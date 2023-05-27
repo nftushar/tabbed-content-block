@@ -1,0 +1,51 @@
+.bPlIconTitle {
+	i {
+		font-size: 25px;
+	}
+}
+
+.bPlIconSelect {
+	position: relative;
+
+	input {
+		width: 100%;
+	}
+
+	.bPlIconLists {
+		position: absolute;
+		width: 100%;
+		min-height: 80px;
+		max-height: 200px;
+		background: #fff;
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		align-items: center;
+		justify-items: center;
+		overflow-y: scroll;
+		z-index: 99;
+		margin: 0;
+		box-shadow: 0 4px 15px 0 #4527a480;
+		border-radius: 8px;
+
+		i {
+			width: 24px;
+			height: 24px;
+			font-size: 24px;
+			box-sizing: content-box;
+			padding: 8px 0;
+			margin: 0;
+
+			&:hover {
+				background-color: #4527a40f;
+				cursor: pointer;
+			}
+		}
+	}
+
+	.dashicon {
+		position: absolute;
+		right: 5px;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+}

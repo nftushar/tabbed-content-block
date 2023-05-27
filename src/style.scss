@@ -1,0 +1,179 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+ .pageContent .container {
+    background: none !important;
+}
+
+html :where(.editor-styles-wrapper) ol,
+html :where(.editor-styles-wrapper) ul {
+	box-sizing: border-box;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+
+.components-button.has-icon.has-text {
+	// -webkit-box-align: center;
+	// -ms-flex-align: center;
+	// align-items: center;
+	background: #4527a4;
+	color: #fff;
+	// display: -webkit-inline-box;
+	// display: -ms-inline-flexbox;
+	display: inline-flex;
+	font-size: 15px;
+	font-weight: 700;
+	padding: 10px 15px;
+}
+
+
+.wp-block-tcb-tabs {
+	padding-top: 20px;
+	padding-left: 20px;
+
+	svg {
+		font-size: 30px;
+	}
+
+	.tcbTabbedContent {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.tabMenu {
+		margin: 0;
+		list-style-type: none;
+		display: flex;
+		flex-wrap: wrap;
+		// column-gap: 16px;
+		gap: 8px;
+		// margin-bottom: 35px;
+		// width: 645px;
+
+		li {
+			border-radius: 3px;
+			overflow: hidden;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			gap: 2px;
+			text-decoration: none;
+			word-wrap: break-word;
+			color: #000;
+			padding: 15px 10px;
+			transition: all 0.2s ease-in-out;
+			background: -webkit-linear-gradient(left, #f3fbed, #f1f9eb, #f0f7e9, #e4eedc, #dbeccd);
+			box-shadow: 0px 10px 40px 0px rgba(107, 125, 179, 0.11);
+			cursor: pointer;
+			position: relative;
+
+			img,
+			i {
+				margin-bottom: 10px;
+			}
+
+			i {
+				font-size: 32px;
+				// color: #10d56d;
+			}
+
+			.fa-solid.fa-xmark {
+				font-size: 20px;
+				color: #f01005;
+				position: absolute;
+				top: 5px;
+				right: 7px;
+				/* justify-content: flex-end; */
+			}
+
+			.tabLabel {
+				display: inline-block;
+				font-weight: 700;
+			}
+
+			&.active {
+
+				border-radius: 2px;
+				background: linear-gradient(90deg, #019447 0%, #10d56d 100%);
+				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+				/* font-size: 15px;
+					    font-weight: 700; */
+				color: #fff !important;
+
+				i {
+					color: #fff;
+					transition: all 0.4s ease-in-out;
+				}
+			}
+		}
+	}
+
+	.tcbTabbedContent {
+		.wp-block-tcb-tab {
+			padding-top: 20px;
+			padding-left: 20px;
+			display: none;
+			color: #333;
+			// background-color: #F6F5FB;
+			word-wrap: break-word;
+			padding-bottom: 200px;
+
+			>* {
+				opacity: 0;
+				transform: translateY(20px);
+				transition: opacity 0.2s, transform 0.2s;
+
+				&:nth-child(1) {
+					transition-delay: 0.2s;
+				}
+
+				&:nth-child(2) {
+					transition-delay: 0.3s;
+				}
+
+				&:nth-child(3) {
+					transition-delay: 0.4s;
+				}
+
+				&:nth-child(4) {
+					transition-delay: 0.5s;
+				}
+			}
+
+			&.active {
+				display: block;
+			}
+
+			&.activeContent>* {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+	}
+
+	@media (min-width: 576px) {
+		.tcbTabbedContent .tabMenu li {
+			flex-grow: 1;
+		}
+	}
+
+	@media (min-width: 768px) {
+		.tcbTabbedContent .tabMenu li {
+			padding: 20px 15px;
+
+		}
+
+		// .tcbTabbedContent .wp-block-tcb-tab {
+		// 	// padding-left: 40px;
+		// 	// padding-right: 30px;
+		// 	// padding-top: 30px;
+		// }
+	}
+}

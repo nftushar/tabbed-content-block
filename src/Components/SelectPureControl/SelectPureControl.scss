@@ -1,0 +1,112 @@
+$primaryColor: #4527a4;
+
+.bplSelectPure {
+	font-size: 15px;
+	font-weight: 500;
+	width: 100%;
+	min-height: 44px;
+	background-color: #4427a425;
+	position: relative;
+	padding: 5px 10px;
+	border: 1px solid #4427a550;
+	border-radius: 4px;
+	box-shadow: 0 2px 4px #4427a525;
+	cursor: pointer;
+	transition: 0.3s;
+
+	.selectSelectedLabel {
+		font-size: 14px;
+		color: #fff;
+		background-color: $primaryColor;
+		display: inline-flex;
+		border-radius: 3px;
+		padding: 4px 5px;
+		margin: 5px 10px 5px 0;
+		cursor: initial;
+
+		&:last-of-type {
+			margin-right: 0;
+		}
+
+		.closeIcon {
+			cursor: pointer;
+			width: 18px;
+			display: inline-block;
+			position: relative;
+			margin-left: 5px;
+
+			&:hover {
+				color: #e4e4e4;
+			}
+
+			&::before,
+			&::after {
+				content: '';
+				width: 13px;
+				height: 2px;
+				background-color: #fff;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%) rotate(45deg);
+			}
+
+			&::after {
+				transform: translate(-50%, -50%) rotate(-45deg);
+			}
+		}
+	}
+
+	.selectOptions {
+		display: none;
+		width: 100%;
+		max-height: 220px;
+		color: $primaryColor;
+		background-color: #fff;
+		position: absolute;
+		left: 0;
+		top: 100% !important;
+		border-radius: 4px;
+		box-shadow: 0 4px 15px 0 #4527a480;
+		overflow: hidden;
+		overflow-y: scroll;
+		z-index: 99;
+	}
+
+	&.selectOptionsOpened .selectOptions {
+		display: block;
+	}
+
+	.selectAutocomplete {
+		font-size: 15px;
+		width: 100%;
+		background-color: #f9f9f8;
+		padding: 5px 10px;
+		border: none;
+		border-bottom: 1px solid $primaryColor;
+		border-radius: 0;
+		outline: none;
+
+		&:focus {
+			border-color: $primaryColor;
+			box-shadow: none;
+		}
+	}
+
+	.selectOption {
+		line-height: 24px;
+		height: 44px;
+		padding: 10px;
+		border-bottom: 1px solid $primaryColor;
+	}
+
+	.selectOptionSelected {
+		color: #4527a450;
+		cursor: initial;
+		pointer-events: none;
+	}
+
+	.selectOptionHidden {
+		display: none;
+	}
+}

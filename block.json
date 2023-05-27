@@ -1,0 +1,97 @@
+{
+	"apiVersion": "1",
+	"name": "tcb/tabs",
+	"version": "0.1.0",
+	"title": "Tabbed Content",
+	"category": "widgets",
+	"keywords": [
+		"tcb",
+		"tcb-tabbed-content"
+	],
+	"icon": "star-filled",
+	"description": "Create tabbed sections in WordPress for organized content and improved user engagement.",
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false
+	},
+	"textdomain": "tcb-tabbed-content",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"cId": {
+			"type": "string",
+			"default": ""
+		},
+		"tabs": {
+			"type": "array",
+			"default": [
+				{
+					"title": "HTML5 Audio Player",
+					"mediaType": "icon",
+					"iconClass": "fa-solid fa-play",
+					"imgURL": ""
+				},
+				{
+					"title": "HTML5 Video Player",
+					"mediaType": "icon",
+					"iconClass": "fa-solid fa-circle-play",
+					"imgURL": ""
+				},
+				{
+					"title": "PDF Poster",
+					"mediaType": "icon",
+					"iconClass": "fa-solid fa-file-pdf",
+					"imgURL": ""
+				}
+			]
+		},
+		"padding": {
+			"type": "object",
+			"default": {
+				"top": "0px",
+				"right": "0px",
+				"bottom": "0px",
+				"left": "0px"
+			}
+		},
+		"iconColor": {
+			"type": "string",
+			"default": "#41FB76B3"
+		},
+		"ContentBackgroundColor": {
+			"type": "object",
+			"default": {
+				"gradient": "-webkit-linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(232,243,214,1) 0%, rgba(242,246,203,1) 39%, rgba(242,246,202,1) 70%, rgba(252,249,190,1) 90%)",
+				
+				"type": "gradient"
+			}
+		},
+		"BackgroundColor": {
+			"type": "object",
+			"default": {
+				"gradient": "-webkit-linear-gradient(left, #f3fbed, #f1f9eb, #f0f7e9, #e4eedc, #dbeccd)",
+				"type": "gradient"
+			}
+		},
+		"HoverBackgroundColor": {
+			"type": "object",
+			"default": {
+				"gradient": "linear-gradient(90deg, #019447 0%, #10d56d 100%);",
+				"type": "gradient"
+			}
+		}
+	},
+
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "file:dist/editor.js",
+	"script": "file:dist/script.js"
+}

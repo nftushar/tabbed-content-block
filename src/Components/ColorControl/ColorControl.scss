@@ -1,0 +1,44 @@
+.bPlColorPopover {
+	left: auto !important;
+	right: 0;
+
+	.components-popover__content {
+		min-width: auto;
+		max-width: 250px;
+	}
+}
+
+.bPlColor {
+	display: flex;
+	align-items: center;
+}
+
+.bPlColorButtonContainer {
+	height: 30px;
+	width: 30px;
+	background-image: linear-gradient(45deg, #ddd 25%, transparent 0), linear-gradient(-45deg, #ddd 25%, transparent 0),
+		linear-gradient(45deg, transparent 75%, #ddd 0), linear-gradient(-45deg, transparent 75%, #ddd 0);
+	background-size: 10px 10px;
+	background-position: 0 0, 0 5px, 5px -5px, -5px 0;
+	border: 1px solid #e9e9e9;
+	border-radius: 50%;
+
+	.bPlColorButton {
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		outline: 0px;
+		border: none;
+		cursor: pointer;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+}
+
+.themeColors {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 3px;
+}

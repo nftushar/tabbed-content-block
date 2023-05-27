@@ -1,0 +1,67 @@
+.bPlSpaceControl {
+	.components-unit-control-wrapper .components-unit-control__select {
+		width: 18px !important;
+	}
+
+	.fourColumn {
+		justify-content: space-between;
+
+		>.components-unit-control-wrapper {
+			>.components-unit-control {
+				width: 55px;
+
+				>.css-d373l0-Item-LabelWrapper {
+					margin-right: 0;
+				}
+			}
+		}
+	}
+
+	.twoColumn {
+		justify-content: space-between;
+
+		>.components-unit-control-wrapper {
+			>.components-unit-control {
+				width: 110px;
+
+				>.css-d373l0-Item-LabelWrapper {
+					margin-right: 0;
+				}
+			}
+		}
+	}
+
+	.bPlBtnGroup {
+		display: flex;
+
+		.components-button,
+		.bPlBtnGroup .is-primary {
+			height: auto;
+			padding: 6px;
+		}
+
+		.components-button.side2 {
+			align-items: baseline;
+		}
+
+		.bPlBtnGroup .is-primary {
+			&:hover {
+				color: #fff;
+			}
+		}
+
+		.sideScrollIcon {
+			svg {
+				transform: rotate(90deg);
+			}
+		}
+
+		.scrollIcon,
+		.sideScrollIcon,
+		.dashicons {
+			width: 14px;
+			height: 14px;
+			font-size: 14px;
+		}
+	}
+}

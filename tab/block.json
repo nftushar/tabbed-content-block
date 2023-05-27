@@ -1,0 +1,55 @@
+{
+	"apiVersion": "1",
+	"name": "tcb/tab",
+	"title": "Tab",
+	"description": "Tab for Tabbed content block",
+	"parent": [
+		"tcb/tabs"
+	],
+	"icon": "welcome-widgets-menus",
+	"category": "widgets",
+	"keywords": [
+		"slider",
+		"slider content",
+		"multi tab"
+	],
+	"textdomain": "b-tran",
+	"attributes": {
+		"cId": {
+			"type": "string",
+			"default": ""
+		},
+		"title": {
+			"type": "string",
+			"default": "HTML5 Audio Player"
+		},
+		"mediaType": {
+			"type": "string",
+			"default": "icon"
+		},
+		"iconClass": {
+			"type": "string",
+			"default": "fa-solid fa-play"
+		},
+		"imgURL": {
+			"type": "string",
+			"default": ""
+		},
+		"iconLabel": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"align": false,
+		"reusable": false,
+		"html": false
+	},
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"editorScript": "",
+	"script": ""
+}
