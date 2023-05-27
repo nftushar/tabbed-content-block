@@ -16,7 +16,7 @@ const Settings = ({ attributes, setAttributes }) => {
 	const { padding, ContentBackgroundColor, BackgroundColor, HoverBackgroundColor, iconColor } = attributes;
 // console.log(iconColor);
 	return <InspectorControls>
-		<PanelBody className='bPlPanelBody' title={__('Tcb', 'stepped-content')}>
+		<PanelBody className='bPlPanelBody' title={__('Tabbed Content', 'stepped-content')}>
 		<BColor
 				label={__("Icon Color", "tcb")}
 				value={iconColor}
