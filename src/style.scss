@@ -68,7 +68,7 @@ html :where(.editor-styles-wrapper) ul {
 			gap: 2px;
 			text-decoration: none;
 			word-wrap: break-word;
-			color: #000;
+			// color: #000;
 			padding: 15px 10px;
 			transition: all 0.2s ease-in-out;
 			background: -webkit-linear-gradient(left, #f3fbed, #f1f9eb, #f0f7e9, #e4eedc, #dbeccd);
@@ -160,9 +160,18 @@ html :where(.editor-styles-wrapper) ul {
 		}
 	}
 
-	@media (min-width: 576px) {
+	@media (max-width: 576px) {
 		.tcbTabbedContent .tabMenu li {
 			flex-grow: 1;
+		}
+		 .tabMenu {
+			margin: 0;
+			list-style-type: none;
+			display: -ms-flexbox;
+		    display: block; 
+			-ms-flex-wrap: wrap;
+			flex-wrap: wrap;
+			gap: 8px;
 		}
 	}
 
@@ -178,4 +187,20 @@ html :where(.editor-styles-wrapper) ul {
 		// 	// padding-top: 30px;
 		// }
 	}
+}
+
+@media (min-width: 576px) {
+	.tabMenu {
+		margin: 0;
+		list-style-type: none;
+		display: -ms-flexbox;
+		display: block; 
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+	.tcbTabbedContent .tabMenu li {
+		flex-grow: 1;
+	}
+	 
 }

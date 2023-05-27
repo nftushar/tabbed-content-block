@@ -79,11 +79,15 @@ function getBackgroundCSS( $bg, $isSolid = true, $isGradient = true, $isImage = 
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='wp-block-tcb-tabs-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
 			<style>
 				#tcbTabbedContent-<?php echo esc_attr( $cId ); ?>{
-color: green;
+/* color: green; */
 				}
 			</style>
 <?php
 		 echo "<style>
+
+				.wp-block-tcb-tabs .tabMenu li i{
+					color: $iconColor;
+				}
 		 
 				#tcbTabbedContent-$cId .tabMenu {
 					padding: " . implode(' ', $padding) . ";

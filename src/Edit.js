@@ -23,7 +23,6 @@ const Edit = props => {
 	const { tabs, ContentBackgroundColor, BackgroundColor, HoverBackgroundColor, iconColor, padding } = attributes;
 	const [firstClientId, setFirstClientId] = useState(null)
 
-// console.log(iconColor);
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 

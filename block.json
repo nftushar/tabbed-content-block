@@ -32,21 +32,15 @@
 			"default": [
 				{
 					"title": "HTML5 Audio Player",
-					"mediaType": "icon",
-					"iconClass": "fa-solid fa-play",
-					"imgURL": ""
+					"iconClass": "fa-solid fa-play"
 				},
 				{
 					"title": "HTML5 Video Player",
-					"mediaType": "icon",
-					"iconClass": "fa-solid fa-circle-play",
-					"imgURL": ""
+					"iconClass": "fa-solid fa-circle-play"
 				},
 				{
 					"title": "PDF Poster",
-					"mediaType": "icon",
-					"iconClass": "fa-solid fa-file-pdf",
-					"imgURL": ""
+					"iconClass": "fa-solid fa-file-pdf"
 				}
 			]
 		},
@@ -67,7 +61,6 @@
 			"type": "object",
 			"default": {
 				"gradient": "-webkit-linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(232,243,214,1) 0%, rgba(242,246,203,1) 39%, rgba(242,246,202,1) 70%, rgba(252,249,190,1) 90%)",
-				
 				"type": "gradient"
 			}
 		},
@@ -86,7 +79,6 @@
 			}
 		}
 	},
-
 	"example": {
 		"attributes": {
 			"preview": true
