@@ -167,8 +167,8 @@ html :where(.editor-styles-wrapper) ul {
 		 .tabMenu {
 			margin: 0;
 			list-style-type: none;
-			display: -ms-flexbox;
-		    display: block; 
+			display: flex;
+			flex-direction: column;
 			-ms-flex-wrap: wrap;
 			flex-wrap: wrap;
 			gap: 8px;

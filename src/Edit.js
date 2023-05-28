@@ -103,9 +103,9 @@ const Edit = props => {
 						<span className="tabLabel">
 							{title}
 						</span>
-					</li>
+					</li> 
 
-				})}
+				})}<br></br>
 			</ul>
 
 			<div className='tcb-innerBlock' id={`tcb-innerBlock-${clientId}`} >
