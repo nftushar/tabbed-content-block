@@ -56,8 +56,6 @@ function getBackgroundCSS( $bg, $isSolid = true, $isGradient = true, $isImage = 
 }
 
 
-
-
 	function onInit() {
 		wp_register_style( 'tcb-tabs-style', plugins_url( 'dist/style.css', __FILE__ ), [ 'fontAwesome' ], TCB_PLUGIN_VERSION ); // Style
 		wp_register_style( 'tcb-tabs-editor-style', plugins_url( 'dist/editor.css', __FILE__ ), [], TCB_PLUGIN_VERSION ); // Backend Style
@@ -85,7 +83,6 @@ function getBackgroundCSS( $bg, $isSolid = true, $isGradient = true, $isImage = 
 			</style>
 <?php
 		 echo "<style>
-
 				.wp-block-tcb-tabs .tabMenu li i{
 					color: $iconColor;
 				}
@@ -105,7 +102,6 @@ function getBackgroundCSS( $bg, $isSolid = true, $isGradient = true, $isImage = 
 				#wp-block-tcb-tabs-$cId .tcbTabbedContent .tabMenu li.active {".
 					 $this->getBackgroundCSS($HoverBackgroundColor)
 				."}
-
 			</style>";
  ?>
 
