@@ -8,7 +8,7 @@
 		"tcb",
 		"tcb-tabbed-content"
 	],
-	"icon": "star-filled",
+	"icon": "welcome-widgets-menus",
 	"description": "Create tabbed sections in WordPress for organized content and improved user engagement.",
 	"supports": {
 		"align": [

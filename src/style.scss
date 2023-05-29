@@ -47,12 +47,14 @@ html :where(.editor-styles-wrapper) ul {
 	}
 
 	.tabMenu {
+
+		padding-bottom: 20px !important;
 		margin: 0;
 		list-style-type: none;
 		display: flex;
+		gap: 8px;
 		flex-wrap: wrap;
 		// column-gap: 16px;
-		gap: 8px;
 		// margin-bottom: 35px;
 		// width: 645px;
 
@@ -88,9 +90,12 @@ html :where(.editor-styles-wrapper) ul {
 				font-size: 20px;
 				color: #f01005;
 				position: absolute;
-				top: 5px;
-				right: 7px;
+				top: 0;
+				right: 0;
 				/* justify-content: flex-end; */
+				margin: 0;
+				padding: 8px;
+				line-height: 15px;
 			}
 
 			.tabLabel {
@@ -117,13 +122,12 @@ html :where(.editor-styles-wrapper) ul {
 
 	.tcbTabbedContent {
 		.wp-block-tcb-tab {
-			padding-top: 20px;
-			padding-left: 20px;
+			padding: 25px;
 			display: none;
 			color: #333;
 			// background-color: #F6F5FB;
 			word-wrap: break-word;
-			padding-bottom: 200px;
+			// padding-bottom: 200px;
 
 			>* {
 				opacity: 0;
@@ -163,6 +167,7 @@ html :where(.editor-styles-wrapper) ul {
 			flex-grow: 1;
 		}
 		 .tabMenu {
+			padding: 0;
 			margin: 0;
 			list-style-type: none;
 			display: flex;
@@ -195,7 +200,6 @@ html :where(.editor-styles-wrapper) ul {
 		display: block; 
 		-ms-flex-wrap: wrap;
 		flex-wrap: wrap;
-		gap: 8px;
 	}
 	.tcbTabbedContent .tabMenu li {
 		flex-grow: 1;

@@ -12,7 +12,7 @@ export const tabInit = (el, clientId) => {
     const bodyEls = document.querySelectorAll(`#tcbTabbedContent-${clientId} .wp-block-tcb-tab`);
 
     // Clear Timer
-    // window.clearTimeout(timerOpacity);
+    window.clearTimeout(timerOpacity);
 
     // Remove Active Classes
     listEls.forEach(el => {
@@ -28,10 +28,10 @@ export const tabInit = (el, clientId) => {
 
     const bodyEl = bodyEls[getIndex(el)];
     addClass(bodyEl, 'active');
-    // console.log({ bodyEl })
 
     // Opacity Transition Class
     timerOpacity = setTimeout(() => {
+        // console.log(bodyEl)
         addClass(bodyEl, 'activeContent');
     }, 50);
 }

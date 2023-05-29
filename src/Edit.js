@@ -5,7 +5,7 @@ import { InnerBlocks, Inserter } from '@wordpress/block-editor';
 import './editor.scss';
 import { tabInit, getBoxValue } from './utils/function';
 import { IconButton } from '@wordpress/components';
-// import { Background } from './Components';
+
 import { getBackgroundCSS } from '../../Components/Helper/getCSS';
 
 import Settings from './Settings';
@@ -49,6 +49,7 @@ const Edit = props => {
 
 	function tabDelete(clientId) {
 		wp.data.dispatch('core/editor').removeBlock(clientId);
+	
 	}
 
 
@@ -59,53 +60,65 @@ const Edit = props => {
 						.wp-block-tcb-tabs .tabMenu li i{
 							color: ${iconColor}
 						}
-
 						#wp-block-tcb-tabs-${clientId} .tabMenu {
 						 padding: ${getBoxValue(padding)}
 						}
-
 						#tcb-innerBlock-${clientId}{
 							${getBackgroundCSS(ContentBackgroundColor)}
 						}
-
 						#wp-block-tcb-tabs-${clientId} .tcbTabbedContent .tabMenu li{
 							${getBackgroundCSS(BackgroundColor)}
 						}
-
 						#wp-block-tcb-tabs-${clientId} .tcbTabbedContent .tabMenu li.active{
 							${getBackgroundCSS(HoverBackgroundColor)} 
 						}
-	
 	   `}
 		</style>
-
 
 		<Settings attributes={attributes} setAttributes={setAttributes} ></Settings>
 		<div id={`tcbTabbedContent-${clientId}`} className="tcbTabbedContent">
 			<ul className="tabMenu">
 				{tabs.map((item, index) => {
-					// {console.log(item)}
 					const { title, iconClass, imgURL } = item;
-
 					const onListClick = e => {
 						e.preventDefault();
 						tabInit(e.currentTarget, clientId);
 					}
 
 					return <li key={index} onClick={onListClick} className={index == 0 ? "active" : " "}>
+						<i onClick={(e) => {
+							e.preventDefault();
+							e.stopPropagation();
 
-						<i onClick={() => tabDelete(item.clientId)} className="fa-solid fa-xmark" ></i>
-					
-					       	<i className={iconClass}></i>
+							tabDelete(item.clientId);
 
+							const liEl = e.target.parentElement;
+							const isActive = liEl.classList.contains('active');
+
+							if(isActive){
+								const nextEl = liEl.nextSibling;
+								const prevEl = liEl.previousSibling;
+
+								if(prevEl){
+									setTimeout(() => {
+										console.log('prev',prevEl)
+										tabInit(prevEl, clientId);
+									}, 0);
+								}else if(nextEl) {
+									setTimeout(() => {
+										console.log('next',nextEl)
+										tabInit(nextEl, clientId);
+									}, 0);
+								}
+							}
+						}} className="fa-solid fa-xmark" ></i>
+						<i className={iconClass}></i>
 						<img src={imgURL} />
-
 						<span className="tabLabel">
 							{title}
 						</span>
 					</li> 
-
-				})}<br></br>
+				})} 
 			</ul>
 
 			<div className='tcb-innerBlock' id={`tcb-innerBlock-${clientId}`} >
