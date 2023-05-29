@@ -56,6 +56,8 @@ function getBackgroundCSS( $bg, $isSolid = true, $isGradient = true, $isImage = 
 }
 
 
+
+
 	function onInit() {
 		wp_register_style( 'tcb-tabs-style', plugins_url( 'dist/style.css', __FILE__ ), [ 'fontAwesome' ], TCB_PLUGIN_VERSION ); // Style
 		wp_register_style( 'tcb-tabs-editor-style', plugins_url( 'dist/editor.css', __FILE__ ), [], TCB_PLUGIN_VERSION ); // Backend Style
@@ -79,7 +81,6 @@ function getBackgroundCSS( $bg, $isSolid = true, $isGradient = true, $isImage = 
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='wp-block-tcb-tabs-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
 			<style>
 				#tcbTabbedContent-<?php echo esc_attr( $cId ); ?>{
-/* color: green; */
 				}
 			</style>
 <?php
