@@ -35,6 +35,12 @@
 			"type": "string",
 			"default": ""
 		},
+		"icon": {
+			"type": "object",
+			"default": {
+				"class": "fab fa-html5"
+			}
+		},
 		"iconLabel": {
 			"type": "string",
 			"default": ""

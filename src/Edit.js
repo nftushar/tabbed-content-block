@@ -19,9 +19,9 @@ const INNER_BLOCKS_TEMPLATE = [
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId, innerBlocks } = props;
-	const { tabs, ContentBackgroundColor, BackgroundColor, HoverBackgroundColor, iconColor, DletBtnColor, padding } = attributes;
+	const { tabs, ContentBackgroundColor, BackgroundColor, HoverBackgroundColor, iconColor, icon, DletBtnColor, padding } = attributes;
 	const [firstClientId, setFirstClientId] = useState(null)
-	
+	console.log(icon);
 	function updateTab(index, property, value) {
 		const newTabs = [...tabs];
 		newTabs[index][property] = value;
@@ -63,7 +63,7 @@ const Edit = props => {
 							color: ${DletBtnColor}
 						}
 						.wp-block-tcb-tabs .tabMenu li i{
-							color: ${iconColor}
+							color: ${icon}
 						}
 						#wp-block-tcb-tabs-${clientId} .tabMenu {
 						 padding: ${getBoxValue(padding)}

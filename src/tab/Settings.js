@@ -12,7 +12,7 @@ const Settings = ({ attributes, setAttributes }) => {
 		<PanelBody className='bPlPanelBody' title={__('Tabbed Content', 'stepped-content')}>
 			<Label className='mb5'>{__('Title:', 'tcb')}</Label>
 			<TextControl value={title} onChange={val => setAttributes({ title: val })} />
-			<IconControl className='mt20' value={{ class: iconClass }} onChange={val => setAttributes({ iconClass: val?.class })} isSize={false} isColor={false} />
+			<IconControl className='mt20' value={{ class: iconClass }} onChange={val => setAttributes({ iconClass: val?.class })} isSize={true} isColor={true} />
 		</PanelBody>
 	</InspectorControls>;
 };
