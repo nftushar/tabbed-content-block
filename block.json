@@ -53,10 +53,19 @@
 				"left": "0px"
 			}
 		},
+		"DletBtnColor": {
+			"type": "string",
+			"default": "#B70404"
+		},
 		"iconColor": {
 			"type": "string",
 			"default": "#41FB76B3"
 		},
+		"iconSize": {
+			"type": "string",
+			"default": "55px"
+		},
+
 		"ContentBackgroundColor": {
 			"type": "object",
 			"default": {

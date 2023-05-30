@@ -1,37 +1,41 @@
 import { useEffect, useState } from 'react';
 import { __ } from '@wordpress/i18n'
 import { withSelect } from '@wordpress/data';
-import { InnerBlocks, Inserter } from '@wordpress/block-editor';
+import { InnerBlocks, Inserter, RichText } from '@wordpress/block-editor';
 import './editor.scss';
 import { tabInit, getBoxValue } from './utils/function';
 import { IconButton } from '@wordpress/components';
 
 import { getBackgroundCSS } from '../../Components/Helper/getCSS';
-
 import Settings from './Settings';
 
 
 const INNER_BLOCKS_TEMPLATE = [
-	['tcb/tab', { title: 'HTML5 Audio Player', mediaType: 'icon', iconClass: 'fab fa-html5', imgURL: '' }],
-	['tcb/tab', { title: 'HTML5 Video Player', mediaType: 'icon', iconClass: 'fab fa-html5', imgURL: '' }],
-	['tcb/tab', { title: 'HTML5 Video Player', mediaType: 'icon', iconClass: 'fab fa-html5', imgURL: '' }]
+	['tcb/tab', { title: 'HTML5 Audio Player', mediaType: 'icon', iconClass: 'fab fa-html5' }],
+	['tcb/tab', { title: 'HTML5 Video Player', mediaType: 'icon', iconClass: 'fab fa-html5' }],
+	['tcb/tab', { title: 'HTML5 Video Player', mediaType: 'icon', iconClass: 'fab fa-html5' }]
 ];
 
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId, innerBlocks } = props;
-	const { tabs, ContentBackgroundColor, BackgroundColor, HoverBackgroundColor, iconColor, padding } = attributes;
+	const { tabs, ContentBackgroundColor, BackgroundColor, HoverBackgroundColor, iconColor, DletBtnColor, padding } = attributes;
 	const [firstClientId, setFirstClientId] = useState(null)
-
+	
+	function updateTab(index, property, value) {
+		const newTabs = [...tabs];
+		newTabs[index][property] = value;
+		setAttributes({ tabs: newTabs });
+	}
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
 	useEffect(() => {
-		const newTabs = innerBlocks?.map(({ clientId, attributes: { title, mediaType, iconClass, imgURL } }, index) => {
+		const newTabs = innerBlocks?.map(({ clientId, attributes: { title, mediaType, iconClass } }, index) => {
 			if(index === 0){
 				setFirstClientId(clientId)
 			}
-			return { clientId, title, mediaType, iconClass, imgURL };
+			return { clientId, title, mediaType, iconClass };
 		});
 
 		setAttributes({ tabs: newTabs });
@@ -49,14 +53,15 @@ const Edit = props => {
 
 	function tabDelete(clientId) {
 		wp.data.dispatch('core/editor').removeBlock(clientId);
-	
 	}
-
 
 	return <div id={`wp-block-tcb-tabs-${clientId}`} className='wp-block-tcb-tabs'>
 
 		<style>
 			{`
+						.wp-block-tcb-tabs .tabMenu li .fa-solid.fa-xmark{
+							color: ${DletBtnColor}
+						}
 						.wp-block-tcb-tabs .tabMenu li i{
 							color: ${iconColor}
 						}
@@ -79,7 +84,7 @@ const Edit = props => {
 		<div id={`tcbTabbedContent-${clientId}`} className="tcbTabbedContent">
 			<ul className="tabMenu">
 				{tabs.map((item, index) => {
-					const { title, iconClass, imgURL } = item;
+					const { title, iconClass } = item;
 					const onListClick = e => {
 						e.preventDefault();
 						tabInit(e.currentTarget, clientId);
@@ -101,12 +106,12 @@ const Edit = props => {
 
 								if(prevEl){
 									setTimeout(() => {
-										console.log('prev',prevEl)
+										// console.log('prev',prevEl)
 										tabInit(prevEl, clientId);
 									}, 0);
 								}else if(nextEl) {
 									setTimeout(() => {
-										console.log('next',nextEl)
+										// console.log('next',nextEl)
 										tabInit(nextEl, clientId);
 									}, 0);
 								}
@@ -114,7 +119,15 @@ const Edit = props => {
 						}} className="fa-solid fa-xmark" ></i>  
 						{iconClass ? <i className={iconClass }></i> : " "}
 						<span className="tabLabel">
-							{title}
+
+						<RichText
+									tagName="p"
+									value={title}
+									onChange={(content) => updateTab(index, "title", content)}
+									placeholder={__("Enter Title", 'tcb-block-title')}
+									inlineToolbar
+									allowedFormats={["core/bold", "core/italic"]}
+								/>
 						</span>
 					</li> 
 				})} 

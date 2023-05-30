@@ -8,7 +8,8 @@ import { BColor, Background } from './Components'
 ///////////////// Tap Manue ///////////////////////////////
 
 const Settings = ({ attributes, setAttributes }) => {
-	const { padding, ContentBackgroundColor, BackgroundColor, HoverBackgroundColor, iconColor } = attributes;
+	
+	const {DletBtnColor,iconColor, iconSize, padding, ContentBackgroundColor, BackgroundColor, HoverBackgroundColor, } = attributes;
 
 	return <InspectorControls>
 		<PanelBody className='bPlPanelBody' title={__('Tabbed Content', 'stepped-content')}>
@@ -25,6 +26,14 @@ const Settings = ({ attributes, setAttributes }) => {
 					}}
 					onChange={(value) => setAttributes({ padding: value })} />
 		</PanelRow>
+
+		<BColor
+				label={__("Delete Button Color", "tcb")}
+				value={DletBtnColor}
+				onChange={(val) =>
+					setAttributes({ DletBtnColor: val })
+				}
+			/>
 
 		<BColor
 				label={__("Icon Color", "tcb")}

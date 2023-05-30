@@ -48,8 +48,9 @@ html :where(.editor-styles-wrapper) ul {
 
 	.tabMenu {
 
-		padding-bottom: 20px !important;
-		margin: 0;
+		// padding-bottom: 20px !important;
+		// margin: 0;
+		margin-bottom: 25px;
 		list-style-type: none;
 		display: flex;
 		gap: 8px;
@@ -65,7 +66,7 @@ html :where(.editor-styles-wrapper) ul {
 			align-items: center;
 			justify-content: center;
 			flex-direction: column;
-			gap: 2px;
+			// gap: 2px;
 			text-decoration: none;
 			word-wrap: break-word;
 			// color: #000;
@@ -82,13 +83,13 @@ html :where(.editor-styles-wrapper) ul {
 			}
 
 			i {
-				font-size: 32px;
+				font-size: 55px;
 				// color: #10d56d;
 			}
 
 			.fa-solid.fa-xmark {
 				font-size: 20px;
-				color: #f01005;
+				// color: #f01005;
 				position: absolute;
 				top: 0;
 				right: 0;
