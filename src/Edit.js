@@ -111,9 +111,8 @@ const Edit = props => {
 									}, 0);
 								}
 							}
-						}} className="fa-solid fa-xmark" ></i>
-						<i className={iconClass}></i>
-						<img src={imgURL} />
+						}} className="fa-solid fa-xmark" ></i>  
+						{iconClass ? <i className={iconClass }></i> : " "}
 						<span className="tabLabel">
 							{title}
 						</span>
