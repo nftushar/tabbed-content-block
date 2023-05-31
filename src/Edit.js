@@ -5,10 +5,11 @@ import { compose } from '@wordpress/compose'
 import { BlockControls, InnerBlocks, Inserter, RichText } from '@wordpress/block-editor';
 import './editor.scss';
 import { tabInit, getBoxValue } from './utils/function';
-import { IconButton, ToolbarItem, Toolbar, Button, Dropdown, IconControl, DropdownMenu } from '@wordpress/components';
+import { IconButton, ToolbarItem, Toolbar, Button, Dropdown } from '@wordpress/components';
 
 import { getBackgroundCSS } from '../../Components/Helper/getCSS';
 import Settings from './Settings';
+import { IconControl } from './Components';
 
 
 
@@ -113,7 +114,6 @@ const Edit = props => {
 					renderContent={() => {
 						return <IconControl className='mt20' value={iconValue} onChange={val => {
 							setIconValue(val)
-
 						}} />
 					}}
 					isOpen={isOpen}
