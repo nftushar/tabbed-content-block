@@ -85,8 +85,7 @@ const Edit = props => {
 		<style>
 			{`
 						.wp-block-tcb-tabs .tabMenu li .fa-solid.fa-xmark{
-							color: ${DletBtnColor},
-						
+							color: ${DletBtnColor}
 						}
 
 						#wp-block-tcb-tabs-${clientId} .tabMenu {
@@ -148,12 +147,10 @@ const Edit = props => {
 
 								if (prevEl) {
 									setTimeout(() => {
-										// console.log('prev',prevEl)
 										tabInit(prevEl, clientId);
 									}, 0);
 								} else if (nextEl) {
 									setTimeout(() => {
-										// console.log('next',nextEl)
 										tabInit(nextEl, clientId);
 									}, 0);
 								}
@@ -161,7 +158,7 @@ const Edit = props => {
 						}} className="fa-solid fa-xmark" ></i>
 						{icon?.class ? <i className={icon?.class}></i> : " "}
 						<span className="tabLabel">
-
+{/* before Commit */}
 							<RichText
 								tagName="p"
 								value={title}

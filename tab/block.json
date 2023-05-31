@@ -38,7 +38,7 @@
 		"icon": {
 			"type": "object",
 			"default": {
-				"class": "",
+				"class": "fab fa-html5",
 				"fontSize": 55
 			}
 		},
