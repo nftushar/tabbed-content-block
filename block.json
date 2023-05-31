@@ -53,6 +53,7 @@
 				"left": "0px"
 			}
 		},
+		
 		"DletBtnColor": {
 			"type": "string",
 			"default": "#B70404"

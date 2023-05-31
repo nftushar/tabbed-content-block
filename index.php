@@ -84,7 +84,7 @@ function getBackgroundCSS( $bg, $isSolid = true, $isGradient = true, $isImage = 
 <?php
 		 echo "<style>
 				.wp-block-tcb-tabs .tabMenu li i{
-					color: $iconColor;
+					color: $icon;
 				}
 		 
 				#tcbTabbedContent-$cId .tabMenu {
@@ -109,11 +109,13 @@ function getBackgroundCSS( $bg, $isSolid = true, $isGradient = true, $isImage = 
 
 			<div class='tcbTabbedContent' id='tcbTabbedContent-<?php echo esc_attr( $cId ); ?>'>
 				<ul class='tabMenu'>
+					
 					<?php foreach( $tabs as $index => $tab ){
+					
 						extract( $tab );
-						$iconEl = $iconClass ? "<i class='$iconClass'></i>" : '';
-						$imgEl = $imgURL ? "<img src='$imgURL' alt='$title' />" : '';
+						$iconEl = $icon ? "<i class='" . implode(" ", $icon) . "'></i>" : '';
 						$mediaEl = 'icon' === $mediaType ? $iconEl : $imgEl;
+						
 					?>
 
 						<li>

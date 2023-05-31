@@ -192,6 +192,9 @@ html :where(.editor-styles-wrapper) ul {
 		// }
 	}
 }
+.tcbTabContentPopover .components-popover__content {
+	width: 280px;
+}
 
 @media (min-width: 576px) {
 	.tabMenu {
@@ -207,3 +210,4 @@ html :where(.editor-styles-wrapper) ul {
 	}
 	 
 }
+

@@ -1,7 +1,8 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, __experimentalBoxControl as BoxControl, __experimentalNumberControl as NumberControl } from '@wordpress/components';
+import { PanelBody, PanelRow, __experimentalBoxControl as BoxControl } from '@wordpress/components';
 import { BColor, Background } from './Components'
+
 
 
 
@@ -12,6 +13,7 @@ const Settings = ({ attributes, setAttributes }) => {
 	const {DletBtnColor, padding, ContentBackgroundColor, BackgroundColor, HoverBackgroundColor, } = attributes;
 
 	return <InspectorControls>
+		
 		<PanelBody className='bPlPanelBody' title={__('Tabbed Content', 'stepped-content')}>
 
 		<PanelRow className="mt20">

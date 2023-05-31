@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
 import { __ } from '@wordpress/i18n'
-import { withSelect } from '@wordpress/data';
-import { InnerBlocks, Inserter, RichText } from '@wordpress/block-editor';
+import { withDispatch, withSelect } from '@wordpress/data';
+import { compose } from '@wordpress/compose'
+import { BlockControls, InnerBlocks, Inserter, RichText } from '@wordpress/block-editor';
 import './editor.scss';
 import { tabInit, getBoxValue } from './utils/function';
-import { IconButton } from '@wordpress/components';
+import { IconButton, ToolbarItem, Toolbar, Button, Dropdown, IconControl } from '@wordpress/components';
 
 import { getBackgroundCSS } from '../../Components/Helper/getCSS';
 import Settings from './Settings';
+
+
 
 
 const INNER_BLOCKS_TEMPLATE = [
@@ -18,10 +21,19 @@ const INNER_BLOCKS_TEMPLATE = [
 
 
 const Edit = props => {
-	const { attributes, setAttributes, clientId, innerBlocks } = props;
-	const { tabs, ContentBackgroundColor, BackgroundColor, HoverBackgroundColor, iconColor, icon, DletBtnColor, padding } = attributes;
+	const { attributes, setAttributes, clientId, innerBlocks, getBlock, updateBlockAttributes } = props;
+	const { tabs, ContentBackgroundColor, BackgroundColor, HoverBackgroundColor, DletBtnColor, padding } = attributes;
 	const [firstClientId, setFirstClientId] = useState(null)
-	console.log(icon);
+	const [isOpen, setIsOpen] = useState(false);
+	const [activeClientId, setActiveClientId] = useState(false);
+	const [iconValue, setIconValue] = useState({});
+	const [tabAttribute, setTabAttribute] = useState({})
+
+
+	const toggleDropdown = () => {
+		setIsOpen(!isOpen);
+	};
+	// console.log(icon);
 	function updateTab(index, property, value) {
 		const newTabs = [...tabs];
 		newTabs[index][property] = value;
@@ -31,11 +43,11 @@ const Edit = props => {
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
 	useEffect(() => {
-		const newTabs = innerBlocks?.map(({ clientId, attributes: { title, mediaType, iconClass } }, index) => {
-			if(index === 0){
+		const newTabs = innerBlocks?.map(({ clientId, attributes: { title, mediaType, icon } }, index) => {
+			if (index === 0) {
 				setFirstClientId(clientId)
 			}
-			return { clientId, title, mediaType, iconClass };
+			return { clientId, title, mediaType, icon };
 		});
 
 		setAttributes({ tabs: newTabs });
@@ -55,6 +67,19 @@ const Edit = props => {
 		wp.data.dispatch('core/editor').removeBlock(clientId);
 	}
 
+	useEffect(() => {
+		const block = getBlock(activeClientId);
+		setTabAttribute(block?.attributes)
+		setIconValue(block?.attributes?.icon || {})
+	}, [activeClientId])
+
+
+	useEffect(() => {
+		const newAttributes = { ...tabAttribute };
+		newAttributes.icon = iconValue;
+		updateBlockAttributes(activeClientId, newAttributes)
+	}, [iconValue])
+
 	return <div id={`wp-block-tcb-tabs-${clientId}`} className='wp-block-tcb-tabs'>
 
 		<style>
@@ -62,9 +87,7 @@ const Edit = props => {
 						.wp-block-tcb-tabs .tabMenu li .fa-solid.fa-xmark{
 							color: ${DletBtnColor}
 						}
-						.wp-block-tcb-tabs .tabMenu li i{
-							color: ${icon}
-						}
+
 						#wp-block-tcb-tabs-${clientId} .tabMenu {
 						 padding: ${getBoxValue(padding)}
 						}
@@ -77,20 +100,39 @@ const Edit = props => {
 						#wp-block-tcb-tabs-${clientId} .tcbTabbedContent .tabMenu li.active{
 							${getBackgroundCSS(HoverBackgroundColor)} 
 						}
-	   `}
+	        `}
 		</style>
+		<BlockControls>
+			<Toolbar label="Options">
+				<Dropdown
+					popoverProps={{ placement: 'bottom-start' }}
+					contentClassName="tcbTabContentPopover"
+					renderToggle={({ onToggle }) => {
+						return <ToolbarItem icon="edit" as={Button} onClick={onToggle}></ToolbarItem>
+					}}
+					renderContent={() => {
+						return <IconControl className='mt20' value={iconValue} onChange={val => {
+							setIconValue(val)
 
+						}} />
+					}}
+					isOpen={isOpen}
+					onClose={toggleDropdown}
+				/>
+			</Toolbar>
+		</BlockControls>
 		<Settings attributes={attributes} setAttributes={setAttributes} ></Settings>
 		<div id={`tcbTabbedContent-${clientId}`} className="tcbTabbedContent">
 			<ul className="tabMenu">
 				{tabs.map((item, index) => {
-					const { title, iconClass } = item;
+					const { title, icon } = item;
 					const onListClick = e => {
 						e.preventDefault();
 						tabInit(e.currentTarget, clientId);
+						setActiveClientId(item.clientId);
 					}
 
-					return <li key={index} onClick={onListClick} className={index == 0 ? "active" : " "}>
+					return <li key={index} onClick={onListClick} className={`tab-item${item.clientId} ${index == 0 ? "active" : " "}`}>
 						<i onClick={(e) => {
 							e.preventDefault();
 							e.stopPropagation();
@@ -100,37 +142,37 @@ const Edit = props => {
 							const liEl = e.target.parentElement;
 							const isActive = liEl.classList.contains('active');
 
-							if(isActive){
+							if (isActive) {
 								const nextEl = liEl.nextSibling;
 								const prevEl = liEl.previousSibling;
 
-								if(prevEl){
+								if (prevEl) {
 									setTimeout(() => {
 										// console.log('prev',prevEl)
 										tabInit(prevEl, clientId);
 									}, 0);
-								}else if(nextEl) {
+								} else if (nextEl) {
 									setTimeout(() => {
 										// console.log('next',nextEl)
 										tabInit(nextEl, clientId);
 									}, 0);
 								}
 							}
-						}} className="fa-solid fa-xmark" ></i>  
-						{iconClass ? <i className={iconClass }></i> : " "}
+						}} className="fa-solid fa-xmark" ></i>
+						{icon?.class ? <i className={icon?.class}></i> : " "}
 						<span className="tabLabel">
 
-						<RichText
-									tagName="p"
-									value={title}
-									onChange={(content) => updateTab(index, "title", content)}
-									placeholder={__("Enter Title", 'tcb-block-title')}
-									inlineToolbar
-									allowedFormats={["core/bold", "core/italic"]}
-								/>
+							<RichText
+								tagName="p"
+								value={title}
+								onChange={(content) => updateTab(index, "title", content)}
+								placeholder={__("Enter Title", 'tcb-block-title')}
+								inlineToolbar
+								allowedFormats={["core/bold", "core/italic"]}
+							/>
 						</span>
-					</li> 
-				})} 
+					</li>
+				})}
 			</ul>
 
 			<div className='tcb-innerBlock' id={`tcb-innerBlock-${clientId}`} >
@@ -151,10 +193,27 @@ const Edit = props => {
 		</div>
 	</div>;
 };
-export default withSelect((select, { clientId }) => {
-	const { getBlocks } = select('core/block-editor');
+// export default withSelect((select, { clientId }) => {
+// 	const { getBlocks, getBlock, updateBlockAttributes  } = select('core/block-editor');
 
-	return {
-		innerBlocks: getBlocks(clientId)
-	};
-})(Edit);
+// 	return {
+// 		innerBlocks: getBlocks(clientId),
+// 		getBlock,
+// 		updateBlockAttributes 
+// 	};
+// })(Edit);
+
+export default compose([
+	withSelect((select, { clientId }) => {
+		const { getBlocks, getBlock } = select('core/block-editor');
+
+		return {
+			innerBlocks: getBlocks(clientId),
+			getBlock,
+		};
+	}),
+	withDispatch(dispatch => {
+		const { updateBlockAttributes } = dispatch('core/block-editor');
+		return { updateBlockAttributes }
+	})
+])(Edit)
