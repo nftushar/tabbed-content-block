@@ -44,6 +44,32 @@
 				}
 			]
 		},
+		"tabColors": {
+			"type": "object",
+			"default": {
+				"color": "#333",
+				"bgType": "gradient",
+				"gradient": "linear-gradient(to right, #f3fbed, #f1f9eb, #f0f7e9, #e4eedc, #dbeccd)"
+			}
+		},
+		"tabActiveColors": {
+			"type": "object",
+			"default": {
+				"color": "#fff",
+				"bgType": "gradient",
+				"gradient": "linear-gradient(90deg, #019447 0%, #10d56d 100%)"
+			}
+		},
+		"titleTypo": {
+			"type": "object",
+			"default": {
+				"fontSize": 20
+			}
+		},
+		"titleColor": {
+			"type": "string",
+			"color": "#000"
+		},
 		"padding": {
 			"type": "object",
 			"default": {

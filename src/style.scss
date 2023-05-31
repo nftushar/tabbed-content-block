@@ -122,9 +122,8 @@ html :where(.editor-styles-wrapper) ul {
 			padding: 25px;
 			display: none;
 			color: #333;
-			// background-color: #F6F5FB;
 			word-wrap: break-word;
-			// padding-bottom: 200px;
+		
 
 			>* {
 				opacity: 0;
@@ -181,11 +180,6 @@ html :where(.editor-styles-wrapper) ul {
 
 		}
 
-		// .tcbTabbedContent .wp-block-tcb-tab {
-		// 	// padding-left: 40px;
-		// 	// padding-right: 30px;
-		// 	// padding-top: 30px;
-		// }
 	}
 }
 .tcbTabContentPopover .components-popover__content {

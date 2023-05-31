@@ -1,7 +1,8 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, __experimentalBoxControl as BoxControl } from '@wordpress/components';
-import { BColor, Background } from './Components'
+import { BColor, Background,ColorsControl, Typography } from './Components'
+import { produce } from 'immer';
 
 
 
@@ -9,13 +10,13 @@ import { BColor, Background } from './Components'
 ///////////////// Tap Manue ///////////////////////////////
 
 const Settings = ({ attributes, setAttributes }) => {
-	
-	const {DletBtnColor, padding, ContentBackgroundColor, BackgroundColor, HoverBackgroundColor, } = attributes;
+
+	const {tabColors, tabActiveColors, DletBtnColor, padding, ContentBackgroundColor, BackgroundColor, titleTypo, titleColor } = attributes;
 
 	return <InspectorControls>
 		<PanelBody className='bPlPanelBody' title={__('Tabbed Content', 'stepped-content')}>
 
-		<PanelRow className="mt20">
+			<PanelRow className="mt20">
 				<BoxControl
 					label={__("Top Menu Paddign", "tcb")}
 					values={padding}
@@ -26,11 +27,9 @@ const Settings = ({ attributes, setAttributes }) => {
 						"left": "0px"
 					}}
 					onChange={(value) => setAttributes({ padding: value })} />
-				
+			</PanelRow>
 
-		</PanelRow>
-
-		<BColor
+			<BColor
 				label={__("Delete Button Color", "tcb")}
 				value={DletBtnColor}
 				onChange={(val) =>
@@ -47,13 +46,6 @@ const Settings = ({ attributes, setAttributes }) => {
 			/>
 
 			<Background
-				label={__("Tab Active Bg Color", "tcb")}
-				value={HoverBackgroundColor}
-				onChange={(val) =>
-					setAttributes({ HoverBackgroundColor: val })
-				}
-			/>
-			<Background
 				label={__("Content Bg Color", "tcb")}
 				value={ContentBackgroundColor}
 				onChange={(val) =>
@@ -63,6 +55,34 @@ const Settings = ({ attributes, setAttributes }) => {
 
 
 		</PanelBody>
+
+		<PanelBody className="bPlPanelBody" title={__("Tab", "tcb")} initialOpen={false}>
+			<ColorsControl value={tabColors} onChange={val => setAttributes({ tabColors: val })} defaults={{ color: '#333', bgType: 'gradient', gradient: 'linear-gradient(to right, #e7f5dd, #f1f9eb, #f8fff1, #e4eedc, #d5e3cb)' }} />
+		</PanelBody>
+
+		{/* tabActiveColors */}
+		<PanelBody className="bPlPanelBody" title={__("Active Tab", "tcb")} initialOpen={false}>
+			<ColorsControl value={tabActiveColors} onChange={val => setAttributes({ tabActiveColors: val })} defaults={{ color: '#333', bgType: 'gradient', gradient: 'linear-gradient(to right, #019447, #f1f9eb, #10d56d, #e4eedc, #dbeccd)' }} />
+		</PanelBody>
+
+		{/* start */}
+		<PanelBody className="bPlPanelBody" title={__("Title", "tcb")} initialOpen={false}>
+			<Typography
+				label={__("Typography", "tcb")}
+				value={titleTypo}
+				onChange={(val) => setAttributes({ titleTypo: val })}
+				produce = {produce}
+			/>
+
+			<BColor
+				label={__("Color", "tcb")}
+				value={titleColor}
+				onChange={(val) =>
+					setAttributes({ titleColor: val })
+				}
+			/>
+		</PanelBody>
+		{/* end  */}
 	</InspectorControls>;
 };
 export default Settings;

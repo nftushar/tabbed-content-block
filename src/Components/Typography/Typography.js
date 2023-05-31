@@ -16,6 +16,8 @@ import { pxUnit, perUnit, emUnit, remUnit } from '../utils/options';
 import fontLists from './fontLists';
 import { fontStyles, textTransforms, textDecorations } from './options';
 
+
+
 const Typography = props => {
 	const { className = '', label = __('Typography:', 'bplugins'), value, onChange, defaults = {}, isFamily = true, produce } = props;
 

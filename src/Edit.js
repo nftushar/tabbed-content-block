@@ -7,7 +7,7 @@ import './editor.scss';
 import { tabInit, getBoxValue } from './utils/function';
 import { IconButton, ToolbarItem, Toolbar, Button, Dropdown } from '@wordpress/components';
 
-import { getBackgroundCSS } from '../../Components/Helper/getCSS';
+import { getBackgroundCSS, getColorsCSS, getTypoCSS } from './Components/utils/getCSS';
 import Settings from './Settings';
 import { IconControl } from './Components';
 
@@ -22,7 +22,8 @@ const INNER_BLOCKS_TEMPLATE = [
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId, innerBlocks, getBlock, updateBlockAttributes } = props;
-	const { tabs, ContentBackgroundColor, BackgroundColor, HoverBackgroundColor, DletBtnColor, padding } = attributes;
+	const { tabColors, tabActiveColors, titleTypo, tabs, ContentBackgroundColor, DletBtnColor, padding } = attributes;
+
 	const [firstClientId, setFirstClientId] = useState(null)
 	const [isOpen, setIsOpen] = useState(false);
 	const [activeClientId, setActiveClientId] = useState(false);
@@ -80,10 +81,23 @@ const Edit = props => {
 		updateBlockAttributes(activeClientId, newAttributes)
 	}, [iconValue])
 
-	return <div id={`wp-block-tcb-tabs-${clientId}`} className='wp-block-tcb-tabs'>
 
+	return <div id={`wp-block-tcb-tabs-${clientId}`} className='wp-block-tcb-tabs'>
+ {/* ${getTypoCSS(titleTypo)?.styles} */}
 		<style>
 			{`
+
+			${getTypoCSS(``, titleTypo)?.googleFontLink}
+			${getTypoCSS(`#wp-block-tcb-tabs-${clientId} li .tabLabel`, titleTypo)?.styles}
+
+						#wp-block-tcb-tabs-${clientId} .tcbTabbedContent .tabMenu li{
+							${getColorsCSS(tabColors)}
+						}
+
+						#wp-block-tcb-tabs-${clientId} .tcbTabbedContent .tabMenu li.active{
+							${getColorsCSS(tabActiveColors)}
+						}
+
 						.wp-block-tcb-tabs .tabMenu li .fa-solid.fa-xmark{
 							color: ${DletBtnColor}
 						}
@@ -94,13 +108,15 @@ const Edit = props => {
 						#tcb-innerBlock-${clientId}{
 							${getBackgroundCSS(ContentBackgroundColor)}
 						}
-						#wp-block-tcb-tabs-${clientId} .tcbTabbedContent .tabMenu li{
+	        `}
+
+			
+{/* #wp-block-tcb-tabs-${clientId} .tcbTabbedContent .tabMenu li{
 							${getBackgroundCSS(BackgroundColor)}
 						}
 						#wp-block-tcb-tabs-${clientId} .tcbTabbedContent .tabMenu li.active{
 							${getBackgroundCSS(HoverBackgroundColor)} 
-						}
-	        `}
+						} */}
 		</style>
 		<BlockControls>
 			<Toolbar label="Options">
