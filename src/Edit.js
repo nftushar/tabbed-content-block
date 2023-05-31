@@ -5,11 +5,10 @@ import { compose } from '@wordpress/compose'
 import { BlockControls, InnerBlocks, Inserter, RichText } from '@wordpress/block-editor';
 import './editor.scss';
 import { tabInit, getBoxValue } from './utils/function';
-import { IconButton, ToolbarItem, Toolbar, Button, Dropdown, IconControl } from '@wordpress/components';
+import { IconButton, ToolbarItem, Toolbar, Button, Dropdown, IconControl, DropdownMenu } from '@wordpress/components';
 
 import { getBackgroundCSS } from '../../Components/Helper/getCSS';
 import Settings from './Settings';
-
 
 
 
@@ -85,7 +84,8 @@ const Edit = props => {
 		<style>
 			{`
 						.wp-block-tcb-tabs .tabMenu li .fa-solid.fa-xmark{
-							color: ${DletBtnColor}
+							color: ${DletBtnColor},
+						
 						}
 
 						#wp-block-tcb-tabs-${clientId} .tabMenu {
