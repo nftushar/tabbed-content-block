@@ -160,7 +160,7 @@ const Edit = props => {
 						<span className="tabLabel">
 {/* before Commit */}
 							<RichText
-								tagName="p"
+								tagName="span"
 								value={title}
 								onChange={(content) => updateTab(index, "title", content)}
 								placeholder={__("Enter Title", 'tcb-block-title')}

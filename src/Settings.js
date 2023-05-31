@@ -1,9 +1,8 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, __experimentalBoxControl as BoxControl, ToolbarItem } from '@wordpress/components';
+import { PanelBody, PanelRow, __experimentalBoxControl as BoxControl } from '@wordpress/components';
 import { BColor, Background } from './Components'
-import { Toolbar } from '@wordpress/components';
-import { Button } from '@wordpress/components';
+
 
 
 
