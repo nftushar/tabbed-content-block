@@ -14,9 +14,6 @@ const Settings = ({ attributes, setAttributes }) => {
 	const {DletBtnColor, padding, ContentBackgroundColor, BackgroundColor, HoverBackgroundColor, } = attributes;
 
 	return <InspectorControls>
-		<Toolbar label="Options">
-			<ToolbarItem icon="edit" as={ Button }>Tab </ToolbarItem>
-        </Toolbar>
 		<PanelBody className='bPlPanelBody' title={__('Tabbed Content', 'stepped-content')}>
 
 		<PanelRow className="mt20">
