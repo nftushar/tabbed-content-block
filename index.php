@@ -26,34 +26,54 @@ class TabbedContent{
 		add_action( 'init', [$this, 'onInit'] );
 	}
 
+
+	function getIconCSS( $icon, $isSize = true, $isColor = true ) {
+		extract( $icon );
+		$fontSize = $fontSize ?? 16;
+		$colorType = $colorType ?? 'solid';
+		$color = $color ?? 'inherit';
+		$gradient = $gradient ?? 'linear-gradient(135deg, #4527a4, #8344c5)';
+	
+		$colorCSS = 'gradient' === $colorType ?
+			"color: transparent; background-image: $gradient; -webkit-background-clip: text; background-clip: text;" :
+			"color: $color;";
+	
+		$styles = '';
+		$styles .= !$fontSize || !$isSize ? '' : "font-size: $fontSize" . "px;";
+		$styles .= $isColor ? $colorCSS : '';
+	
+		return $styles;
+	}
+
+
 	function enqueueBlockAssets(){
 		wp_register_style( 'fontAwesome', TCB_ASSETS_DIR . 'css/fontawesome.min.css', [], '6.4.0' ); // Font Awesome
 	}
 
 
-function getBackgroundCSS( $bg, $isSolid = true, $isGradient = true, $isImage = true ) {
-	extract( $bg );
-	$type = $type ?? 'solid';
-	$color = $color ?? '#000000b3';
-	$gradient = $gradient ?? 'linear-gradient(135deg, #4527a4, #8344c5)';
-	$image = $image ?? [];
-	$position = $position ?? 'center center';
-	$attachment = $attachment ?? 'initial';
-	$repeat = $repeat ?? 'no-repeat';
-	$size = $size ?? 'cover';
-	$overlayColor = $overlayColor ?? '#000000b3';
+	function getBackgroundCSS( $bg, $isSolid = true, $isGradient = true, $isImage = true ) {
+		extract( $bg );
+		$type = $type ?? 'solid';
+		$color = $color ?? '#000000b3';
+		$gradient = $gradient ?? 'linear-gradient(135deg, #4527a4, #8344c5)';
+		$image = $image ?? [];
+		$position = $position ?? 'center center';
+		$attachment = $attachment ?? 'initial';
+		$repeat = $repeat ?? 'no-repeat';
+		$size = $size ?? 'cover';
+		$overlayColor = $overlayColor ?? '#000000b3';
 
-	$gradientCSS = $isGradient ? "background: $gradient;" : '';
+		$gradientCSS = $isGradient ? "background: $gradient;" : '';
 
-	$imgUrl = $image['url'] ?? '';
-	$imageCSS = $isImage ? "background: url($imgUrl); background-color: $overlayColor; background-position: $position; background-size: $size; background-repeat: $repeat; background-attachment: $attachment; background-blend-mode: overlay;" : '';
+		$imgUrl = $image['url'] ?? '';
+		$imageCSS = $isImage ? "background: url($imgUrl); background-color: $overlayColor; background-position: $position; background-size: $size; background-repeat: $repeat; background-attachment: $attachment; background-blend-mode: overlay;" : '';
 
-	$solidCSS = $isSolid ? "background: $color;" : '';
+		$solidCSS = $isSolid ? "background: $color;" : '';
 
-	$styles = 'gradient' === $type ? $gradientCSS : ( 'image' === $type ? $imageCSS : $solidCSS );
+		$styles = 'gradient' === $type ? $gradientCSS : ( 'image' === $type ? $imageCSS : $solidCSS );
 
-	return $styles;
-}
+		return $styles;
+	}
 
 
 	function onInit() {
@@ -70,12 +90,13 @@ function getBackgroundCSS( $bg, $isSolid = true, $isGradient = true, $isImage = 
 	}
 
 	function render( $attributes, $content ){
-		extract( $attributes );
 
+		extract( $attributes );
 		$className = $className ?? '';
 		$blockClassName = 'wp-block-tcb-tabs ' . $className . ' align' . $align;
 
 		ob_start(); ?>
+
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='wp-block-tcb-tabs-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
 			<style>
 				#tcbTabbedContent-<?php echo esc_attr( $cId ); ?>{
@@ -83,10 +104,8 @@ function getBackgroundCSS( $bg, $isSolid = true, $isGradient = true, $isImage = 
 			</style>
 <?php
 		 echo "<style>
-				.wp-block-tcb-tabs .tabMenu li i{
-					color: $icon;
-				}
-		 
+				
+		
 				#tcbTabbedContent-$cId .tabMenu {
 					padding: " . implode(' ', $padding) . ";
 				}
@@ -106,25 +125,40 @@ function getBackgroundCSS( $bg, $isSolid = true, $isGradient = true, $isImage = 
  ?>
 
 
-
 			<div class='tcbTabbedContent' id='tcbTabbedContent-<?php echo esc_attr( $cId ); ?>'>
 				<ul class='tabMenu'>
 					
-					<?php foreach( $tabs as $index => $tab ){
+				<?php foreach( $tabs as $index => $tab ){
 					
-						extract( $tab );
-						$iconEl = $icon ? "<i class='" . implode(" ", $icon) . "'></i>" : '';
-						$mediaEl = 'icon' === $mediaType ? $iconEl : $imgEl;
-						
-					?>
+					extract( $tab );
+					$iconEl = $icon ? "<i class='" . $icon["class"] . "'></i>" : '';
+					$mediaEl = 'icon' === $mediaType ? $iconEl : $imgEl;
+				?>
 
-						<li>
-							<?php echo wp_kses_post( $mediaEl ); ?>
+					<li id='tcbTabbedContent-icon-<?php echo esc_attr( $clientId ); ?>'>
+						<?php echo wp_kses_post( $mediaEl ); ?>
 
-							<span class='tabLabel'><?php echo wp_kses_post( $title ); ?></span>
-						</li>
-					<?php } ?>
+						<span class='tabLabel'><?php echo wp_kses_post( $title ); ?></span>
+					</li>
+					
+				<?php } ?>
+
+				
+
+					
 				</ul>
+				<?php foreach( $tabs as $index => $tab ){
+					extract( $tab );?>
+
+
+					<style>
+							<?php
+							echo "#tcbTabbedContent-icon-$clientId i {".
+								$this->getIconCSS($icon)
+							."}"
+							?>
+				    </style>
+				<?php } ?>
 			<div class='tcb-innerBlock' id='<?php echo "tcb-innerBlock-$cId"?>'>
 					<?php echo wp_kses_post( $content ); ?>
 				</div>

@@ -13,7 +13,13 @@ class TabbedContentTab extends TabbedContent{
 	function render( $attributes, $content ){
 		extract( $attributes );
 
+		// echo '<pre>';
+		// print_r($attributes);
+		// echo '</pre>';
+
+
 		ob_start(); ?>
+
 		<div class='wp-block-tcb-tab' id='tcbTabbedContentTab-<?php echo esc_attr( $cId ); ?>'>
 			<?php echo wp_kses_post( $content ); ?>
 		</div>
