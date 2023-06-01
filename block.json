@@ -79,8 +79,7 @@
 				"left": "0px"
 			}
 		},
-		
-		"DletBtnColor": {
+		"dletBtnColor": {
 			"type": "string",
 			"default": "#B70404"
 		},
@@ -92,22 +91,21 @@
 			"type": "string",
 			"default": "55px"
 		},
-
-		"ContentBackgroundColor": {
+		"contentBackgroundColor": {
 			"type": "object",
 			"default": {
 				"gradient": "-webkit-linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(232,243,214,1) 0%, rgba(242,246,203,1) 39%, rgba(242,246,202,1) 70%, rgba(252,249,190,1) 90%)",
 				"type": "gradient"
 			}
 		},
-		"BackgroundColor": {
+		"backgroundColor": {
 			"type": "object",
 			"default": {
 				"gradient": "-webkit-linear-gradient(left, #f3fbed, #f1f9eb, #f0f7e9, #e4eedc, #dbeccd)",
 				"type": "gradient"
 			}
 		},
-		"HoverBackgroundColor": {
+		"hoverBackgroundColor": {
 			"type": "object",
 			"default": {
 				"gradient": "linear-gradient(90deg, #019447 0%, #10d56d 100%);",

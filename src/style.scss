@@ -5,8 +5,8 @@
  * Replace them with your own styles or remove the file completely.
  */
 
- .pageContent .container {
-    background: none !important;
+.pageContent .container {
+	background: none !important;
 }
 
 html :where(.editor-styles-wrapper) ol,
@@ -16,9 +16,6 @@ html :where(.editor-styles-wrapper) ul {
 	margin: 0;
 	padding: 0;
 }
-
-
-
 
 .components-button.has-icon.has-text {
 	// -webkit-box-align: center;
@@ -34,9 +31,7 @@ html :where(.editor-styles-wrapper) ul {
 	padding: 10px 15px;
 }
 
-
 .wp-block-tcb-tabs {
-
 	svg {
 		font-size: 30px;
 	}
@@ -47,7 +42,6 @@ html :where(.editor-styles-wrapper) ul {
 	}
 
 	.tabMenu {
-
 		// padding-bottom: 20px !important;
 		// margin: 0;
 		margin-bottom: 25px;
@@ -101,12 +95,9 @@ html :where(.editor-styles-wrapper) ul {
 			}
 
 			&.active {
-
 				border-radius: 2px;
 				background: linear-gradient(90deg, #019447 0%, #10d56d 100%);
 				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-				/* font-size: 15px;
-					    font-weight: 700; */
 				color: #fff !important;
 
 				i {
@@ -123,9 +114,8 @@ html :where(.editor-styles-wrapper) ul {
 			display: none;
 			color: #333;
 			word-wrap: break-word;
-		
 
-			>* {
+			> * {
 				opacity: 0;
 				transform: translateY(20px);
 				transition: opacity 0.2s, transform 0.2s;
@@ -151,7 +141,7 @@ html :where(.editor-styles-wrapper) ul {
 				display: block;
 			}
 
-			&.activeContent>* {
+			&.activeContent > * {
 				opacity: 1;
 				transform: translateY(0);
 			}
@@ -162,7 +152,7 @@ html :where(.editor-styles-wrapper) ul {
 		.tcbTabbedContent .tabMenu li {
 			flex-grow: 1;
 		}
-		 .tabMenu {
+		.tabMenu {
 			padding: 0;
 			margin: 0;
 			list-style-type: none;
@@ -177,9 +167,7 @@ html :where(.editor-styles-wrapper) ul {
 	@media (min-width: 768px) {
 		.tcbTabbedContent .tabMenu li {
 			padding: 20px 15px;
-
 		}
-
 	}
 }
 .tcbTabContentPopover .components-popover__content {
@@ -191,13 +179,11 @@ html :where(.editor-styles-wrapper) ul {
 		margin: 0;
 		list-style-type: none;
 		display: -ms-flexbox;
-		display: block; 
+		display: block;
 		-ms-flex-wrap: wrap;
 		flex-wrap: wrap;
 	}
 	.tcbTabbedContent .tabMenu li {
 		flex-grow: 1;
 	}
-	 
 }
-

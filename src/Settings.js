@@ -1,9 +1,8 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, __experimentalBoxControl as BoxControl } from '@wordpress/components';
-import { BColor, Background,ColorsControl, Typography } from './Components'
+import { BColor, Background, ColorsControl, Typography } from './Components'
 import { produce } from 'immer';
-
 
 
 
@@ -11,7 +10,7 @@ import { produce } from 'immer';
 
 const Settings = ({ attributes, setAttributes }) => {
 
-	const {tabColors, tabActiveColors, DletBtnColor, padding, ContentBackgroundColor, BackgroundColor, titleTypo, titleColor } = attributes;
+	const { tabColors, tabActiveColors, DletBtnColor, padding, ContentBackgroundColor, BackgroundColor, titleTypo, titleColor } = attributes;
 
 	return <InspectorControls>
 		<PanelBody className='bPlPanelBody' title={__('Tabbed Content', 'stepped-content')}>
@@ -53,7 +52,6 @@ const Settings = ({ attributes, setAttributes }) => {
 				}
 			/>
 
-
 		</PanelBody>
 
 		<PanelBody className="bPlPanelBody" title={__("Tab", "tcb")} initialOpen={false}>
@@ -71,7 +69,7 @@ const Settings = ({ attributes, setAttributes }) => {
 				label={__("Typography", "tcb")}
 				value={titleTypo}
 				onChange={(val) => setAttributes({ titleTypo: val })}
-				produce = {produce}
+				produce={produce}
 			/>
 
 			<BColor

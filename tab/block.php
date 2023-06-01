@@ -9,15 +9,9 @@ class TabbedContentTab extends TabbedContent{
 			'render_callback' => [$this, 'render']
 		] ); // Register Block
 	}
-// need to understad register_block_type
+	
 	function render( $attributes, $content ){
 		extract( $attributes );
-
-		// echo '<pre>';
-		// print_r($attributes);
-		// echo '</pre>';
-
-
 		ob_start(); ?>
 
 		<div class='wp-block-tcb-tab' id='tcbTabbedContentTab-<?php echo esc_attr( $cId ); ?>'>

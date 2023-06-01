@@ -6,7 +6,6 @@ import { BlockControls, InnerBlocks, Inserter, RichText } from '@wordpress/block
 import './editor.scss';
 import { tabInit, getBoxValue } from './utils/function';
 import { IconButton, ToolbarItem, Toolbar, Button, Dropdown } from '@wordpress/components';
-
 import { getBackgroundCSS, getColorsCSS, getTypoCSS } from './Components/utils/getCSS';
 import Settings from './Settings';
 import { IconControl } from './Components';
@@ -83,7 +82,6 @@ const Edit = props => {
 
 
 	return <div id={`wp-block-tcb-tabs-${clientId}`} className='wp-block-tcb-tabs'>
- {/* ${getTypoCSS(titleTypo)?.styles} */}
 		<style>
 			{`
 
@@ -110,13 +108,7 @@ const Edit = props => {
 						}
 	        `}
 
-			
-{/* #wp-block-tcb-tabs-${clientId} .tcbTabbedContent .tabMenu li{
-							${getBackgroundCSS(BackgroundColor)}
-						}
-						#wp-block-tcb-tabs-${clientId} .tcbTabbedContent .tabMenu li.active{
-							${getBackgroundCSS(HoverBackgroundColor)} 
-						} */}
+
 		</style>
 		<BlockControls>
 			<Toolbar label="Options">
@@ -174,7 +166,7 @@ const Edit = props => {
 						}} className="fa-solid fa-xmark" ></i>
 						{icon?.class ? <i className={icon?.class}></i> : " "}
 						<span className="tabLabel">
-{/* before Commit */}
+							{/* before Commit */}
 							<RichText
 								tagName="span"
 								value={title}

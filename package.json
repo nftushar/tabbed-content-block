@@ -1,6 +1,7 @@
 {
 	"name": "tabbed-content-block",
 	"version": "1.0.0",
+	"type": "module",
 	"description": "Tabbed Content Block",
 	"main": "index.js",
 	"scripts": {
