@@ -26,7 +26,7 @@ exports.bundle = () => (
 		'!package-lock.json',
 		'!readme.md',
 		'!todo.txt',
-		'!webpack.config.js',
+		'!webpack.config.cjs',
 	])
 		.pipe(zip('tabbed-content-block.zip'))
 		.pipe(gulp.dest('bundled'))
