@@ -81,7 +81,7 @@
 		},
 		"dletBtnColor": {
 			"type": "string",
-			"default": "#B70404"
+			"default": "red"
 		},
 		"iconColor": {
 			"type": "string",

@@ -21,7 +21,7 @@ const INNER_BLOCKS_TEMPLATE = [
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId, innerBlocks, getBlock, updateBlockAttributes } = props;
-	const { tabColors, tabActiveColors, titleTypo, tabs, ContentBackgroundColor, DletBtnColor, padding } = attributes;
+	const { tabColors, tabActiveColors, titleTypo, tabs, contentBackgroundColor, dletBtnColor, padding } = attributes;
 
 	const [firstClientId, setFirstClientId] = useState(null)
 	const [isOpen, setIsOpen] = useState(false);
@@ -97,14 +97,14 @@ const Edit = props => {
 						}
 
 						.wp-block-tcb-tabs .tabMenu li .fa-solid.fa-xmark{
-							color: ${DletBtnColor}
+							color: ${dletBtnColor}
 						}
 
 						#wp-block-tcb-tabs-${clientId} .tabMenu {
 						 padding: ${getBoxValue(padding)}
 						}
 						#tcb-innerBlock-${clientId}{
-							${getBackgroundCSS(ContentBackgroundColor)}
+							${getBackgroundCSS(contentBackgroundColor)}
 						}
 	        `}
 
@@ -128,7 +128,9 @@ const Edit = props => {
 				/>
 			</Toolbar>
 		</BlockControls>
-		<Settings attributes={attributes} setAttributes={setAttributes} ></Settings>
+
+		<Settings attributes={attributes} setAttributes={setAttributes}></Settings>
+
 		<div id={`tcbTabbedContent-${clientId}`} className="tcbTabbedContent">
 			<ul className="tabMenu">
 				{tabs.map((item, index) => {
@@ -198,6 +200,7 @@ const Edit = props => {
 		</div>
 	</div>;
 };
+
 // export default withSelect((select, { clientId }) => {
 // 	const { getBlocks, getBlock, updateBlockAttributes  } = select('core/block-editor');
 

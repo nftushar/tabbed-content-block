@@ -54,14 +54,14 @@ class TabbedContent{
 	function getBackgroundCSS( $bg, $isSolid = true, $isGradient = true, $isImage = true ) {
 		extract( $bg );
 		$type = $type ?? 'solid';
-		$color = $color ?? '#000000b3';
+		$color = $color ?? '#F5F0BB';
 		$gradient = $gradient ?? 'linear-gradient(135deg, #4527a4, #8344c5)';
 		$image = $image ?? [];
 		$position = $position ?? 'center center';
 		$attachment = $attachment ?? 'initial';
 		$repeat = $repeat ?? 'no-repeat';
 		$size = $size ?? 'cover';
-		$overlayColor = $overlayColor ?? '#000000b3';
+		$overlayColor = $overlayColor ?? '#F5F0BB';
 
 		$gradientCSS = $isGradient ? "background: $gradient;" : '';
 
@@ -96,6 +96,7 @@ class TabbedContent{
 		$blockClassName = 'wp-block-tcb-tabs ' . $className . ' align' . $align;
 
 		ob_start(); ?>
+	
 
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='wp-block-tcb-tabs-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
 			<style>
@@ -111,15 +112,15 @@ class TabbedContent{
 				}
 
 				#tcb-innerBlock-$cId {".
-					 $this->getBackgroundCSS($ContentBackgroundColor)
+					 $this->getBackgroundCSS($contentBackgroundColor)
 				."}
 
 				#wp-block-tcb-tabs-$cId .tcbTabbedContent .tabMenu li {".
-					 $this->getBackgroundCSS($BackgroundColor)
+					 $this->getBackgroundCSS($backgroundColor)
 				."}
 
 				#wp-block-tcb-tabs-$cId .tcbTabbedContent .tabMenu li.active {".
-					 $this->getBackgroundCSS($HoverBackgroundColor)
+					 $this->getBackgroundCSS($hoverBackgroundColor)
 				."}
 			</style>";
  ?>

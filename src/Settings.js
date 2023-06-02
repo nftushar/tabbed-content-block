@@ -10,7 +10,7 @@ import { produce } from 'immer';
 
 const Settings = ({ attributes, setAttributes }) => {
 
-	const { tabColors, tabActiveColors, DletBtnColor, padding, ContentBackgroundColor, BackgroundColor, titleTypo, titleColor } = attributes;
+	const { tabColors, tabActiveColors, dletBtnColor, padding, contentBackgroundColor, titleTypo, titleColor } = attributes;
 
 	return <InspectorControls>
 		<PanelBody className='bPlPanelBody' title={__('Tabbed Content', 'stepped-content')}>
@@ -30,25 +30,17 @@ const Settings = ({ attributes, setAttributes }) => {
 
 			<BColor
 				label={__("Delete Button Color", "tcb")}
-				value={DletBtnColor}
+				value={dletBtnColor}
 				onChange={(val) =>
-					setAttributes({ DletBtnColor: val })
-				}
-			/>
-
-			<Background
-				label={__("Tab Bg Color", "tcb")}
-				value={BackgroundColor}
-				onChange={(val) =>
-					setAttributes({ BackgroundColor: val })
+					setAttributes({ dletBtnColor: val })
 				}
 			/>
 
 			<Background
 				label={__("Content Bg Color", "tcb")}
-				value={ContentBackgroundColor}
+				value={contentBackgroundColor}
 				onChange={(val) =>
-					setAttributes({ ContentBackgroundColor: val })
+					setAttributes({ contentBackgroundColor: val })
 				}
 			/>
 
