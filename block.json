@@ -48,7 +48,7 @@
 			"type": "object",
 			"default": {
 				"color": "#333",
-				"bgType": "gradient",
+				"type": "gradient",
 				"gradient": "linear-gradient(to right, #f3fbed, #f1f9eb, #f0f7e9, #e4eedc, #dbeccd)"
 			}
 		},
@@ -84,7 +84,7 @@
 			"default": "red"
 		},
 		"iconColor": {
-			"type": "string",
+			"type": "object",
 			"default": "#41FB76B3"
 		},
 		"iconSize": {

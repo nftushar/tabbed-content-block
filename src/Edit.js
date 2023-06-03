@@ -6,7 +6,7 @@ import { BlockControls, InnerBlocks, Inserter, RichText } from '@wordpress/block
 import './editor.scss';
 import { tabInit, getBoxValue } from './utils/function';
 import { IconButton, ToolbarItem, Toolbar, Button, Dropdown } from '@wordpress/components';
-import { getBackgroundCSS, getColorsCSS, getTypoCSS } from './Components/utils/getCSS';
+import { getBackgroundCSS, getColorsCSS, getTypoCSS, getIconCSS } from './Components/utils/getCSS';
 import Settings from './Settings';
 import { IconControl } from './Components';
 
@@ -21,7 +21,7 @@ const INNER_BLOCKS_TEMPLATE = [
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId, innerBlocks, getBlock, updateBlockAttributes } = props;
-	const { tabColors, tabActiveColors, titleTypo, tabs, contentBackgroundColor, dletBtnColor, padding } = attributes;
+	const { titleColor, tabColors, tabActiveColors, titleTypo, tabs, contentBackgroundColor, dletBtnColor, padding } = attributes;
 
 	const [firstClientId, setFirstClientId] = useState(null)
 	const [isOpen, setIsOpen] = useState(false);
@@ -79,7 +79,7 @@ const Edit = props => {
 		newAttributes.icon = iconValue;
 		updateBlockAttributes(activeClientId, newAttributes)
 	}, [iconValue])
-
+	// console.log(iconColor);
 
 	return <div id={`wp-block-tcb-tabs-${clientId}`} className='wp-block-tcb-tabs'>
 		<style>
@@ -88,6 +88,7 @@ const Edit = props => {
 			${getTypoCSS(``, titleTypo)?.googleFontLink}
 			${getTypoCSS(`#wp-block-tcb-tabs-${clientId} li .tabLabel`, titleTypo)?.styles}
 
+						
 						#wp-block-tcb-tabs-${clientId} .tcbTabbedContent .tabMenu li{
 							${getColorsCSS(tabColors)}
 						}
@@ -169,6 +170,7 @@ const Edit = props => {
 						{icon?.class ? <i className={icon?.class}></i> : " "}
 						<span className="tabLabel">
 							{/* before Commit */}
+
 							<RichText
 								tagName="span"
 								value={title}
@@ -201,15 +203,6 @@ const Edit = props => {
 	</div>;
 };
 
-// export default withSelect((select, { clientId }) => {
-// 	const { getBlocks, getBlock, updateBlockAttributes  } = select('core/block-editor');
-
-// 	return {
-// 		innerBlocks: getBlocks(clientId),
-// 		getBlock,
-// 		updateBlockAttributes 
-// 	};
-// })(Edit);
 
 export default compose([
 	withSelect((select, { clientId }) => {

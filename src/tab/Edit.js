@@ -19,7 +19,9 @@ const Edit = props => {
 
 				{`.wp-block-tcb-tabs  .tabMenu li.tab-item${clientId} i{
 				${getIconCSS(icon)}
-			}`}
+			}
+			
+			`}
 			</style>
 			<InnerBlocks template={[
 				['core/heading', {

@@ -50,6 +50,21 @@ class TabbedContent{
 		wp_register_style( 'fontAwesome', TCB_ASSETS_DIR . 'css/fontawesome.min.css', [], '6.4.0' ); // Font Awesome
 	}
 
+	function getColorsCSS( $colors ) {
+		extract( $colors );
+		$color = $color ?? '#333';
+		$bgType = $bgType ?? 'solid';
+		$bg = $bg ?? '#0000';
+		$gradient = $gradient ?? 'linear-gradient(135deg, #4527a4, #8344c5)';
+	
+		$background = $bgType === 'gradient' ? $gradient : $bg;
+	
+		$styles = '';
+		$styles .= $color ? "color: $color;" : '';
+		$styles .= ( $gradient || $bg ) ? "background: $background;" : '';
+	
+		return $styles;
+	}
 
 	function getBackgroundCSS( $bg, $isSolid = true, $isGradient = true, $isImage = true ) {
 		extract( $bg );
@@ -95,7 +110,10 @@ class TabbedContent{
 		$className = $className ?? '';
 		$blockClassName = 'wp-block-tcb-tabs ' . $className . ' align' . $align;
 
-		ob_start(); ?>
+		ob_start();
+		// echo"<pre>"
+		// print_r($attributes)
+		?>
 	
 
 		<div class='<?php echo esc_attr( $blockClassName ); ?>' id='wp-block-tcb-tabs-<?php echo esc_attr( $cId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'>
@@ -112,15 +130,15 @@ class TabbedContent{
 				}
 
 				#tcb-innerBlock-$cId {".
-					 $this->getBackgroundCSS($contentBackgroundColor)
+					 $this->getBackgroundCSS ($contentBackgroundColor)
 				."}
 
 				#wp-block-tcb-tabs-$cId .tcbTabbedContent .tabMenu li {".
-					 $this->getBackgroundCSS($backgroundColor)
+					 $this->getColorsCSS($tabColors)
 				."}
 
 				#wp-block-tcb-tabs-$cId .tcbTabbedContent .tabMenu li.active {".
-					 $this->getBackgroundCSS($hoverBackgroundColor)
+					 $this->getColorsCSS($tabActiveColors)
 				."}
 			</style>";
  ?>

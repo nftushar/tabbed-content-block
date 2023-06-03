@@ -98,10 +98,10 @@ html :where(.editor-styles-wrapper) ul {
 				border-radius: 2px;
 				background: linear-gradient(90deg, #019447 0%, #10d56d 100%);
 				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-				color: #fff !important;
+				// color: #fff !important;
 
 				i {
-					color: #fff;
+					// color: #fff;
 					transition: all 0.4s ease-in-out;
 				}
 			}
