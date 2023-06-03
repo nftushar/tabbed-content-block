@@ -12,16 +12,18 @@ const Edit = props => {
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
+	// console.log(icon);
+
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} />
 		<div className='wp-block-tcb-tab' id={`tcbTabbedContentTab-${clientId}`}>
 			<style>
 
-				{`.wp-block-tcb-tabs  .tabMenu li.tab-item${clientId} i{
-				${getIconCSS(icon)}
+				{`.wp-block-tcb-tabs .tcbTabbedContent-${clientId} .tabMenu li.tab-item${clientId} i{
+				${getIconCSS(icon, false, icon.color ? true : false)}
 			}
-			
-			`}
+		    	`}
+
 			</style>
 			<InnerBlocks template={[
 				['core/heading', {

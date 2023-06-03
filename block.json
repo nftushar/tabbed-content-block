@@ -44,6 +44,15 @@
 				}
 			]
 		},
+		"tabsPadding": {
+			"type": "object",
+			"default": {
+				"top": "0px",
+				"right": "0px",
+				"bottom": "0px",
+				"left": "0px"
+			}
+		},
 		"tabColors": {
 			"type": "object",
 			"default": {
@@ -66,49 +75,18 @@
 				"fontSize": 20
 			}
 		},
-		"titleColor": {
-			"type": "string",
-			"color": "#000"
-		},
-		"padding": {
+		"icon": {
 			"type": "object",
 			"default": {
-				"top": "0px",
-				"right": "0px",
-				"bottom": "0px",
-				"left": "0px"
+				"size": "55px",
+				"color": "#000",
+				"activeColor": "#fff"
 			}
 		},
-		"dletBtnColor": {
-			"type": "string",
-			"default": "red"
-		},
-		"iconColor": {
-			"type": "object",
-			"default": "#41FB76B3"
-		},
-		"iconSize": {
-			"type": "string",
-			"default": "55px"
-		},
-		"contentBackgroundColor": {
+		"contentBG": {
 			"type": "object",
 			"default": {
 				"gradient": "-webkit-linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(232,243,214,1) 0%, rgba(242,246,203,1) 39%, rgba(242,246,202,1) 70%, rgba(252,249,190,1) 90%)",
-				"type": "gradient"
-			}
-		},
-		"backgroundColor": {
-			"type": "object",
-			"default": {
-				"gradient": "-webkit-linear-gradient(left, #f3fbed, #f1f9eb, #f0f7e9, #e4eedc, #dbeccd)",
-				"type": "gradient"
-			}
-		},
-		"hoverBackgroundColor": {
-			"type": "object",
-			"default": {
-				"gradient": "linear-gradient(90deg, #019447 0%, #10d56d 100%);",
 				"type": "gradient"
 			}
 		}

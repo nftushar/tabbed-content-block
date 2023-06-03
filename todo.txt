@@ -1,3 +1,7 @@
 1. on first time wized insert default tab is't active
 
 2. add  new tab have to categorys problem
+
+
+different title color
+global icon size, color

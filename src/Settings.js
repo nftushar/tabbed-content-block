@@ -1,78 +1,58 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, __experimentalBoxControl as BoxControl } from '@wordpress/components';
+import { PanelBody, __experimentalUnitControl as UnitControl, __experimentalBoxControl as BoxControl } from '@wordpress/components';
+
 import { BColor, Background, ColorsControl, Typography } from './Components'
 import { produce } from 'immer';
+import { emUnit, pxUnit } from './Components/utils/options';
 
-
-
-///////////////// Tap Manue ///////////////////////////////
 
 const Settings = ({ attributes, setAttributes }) => {
-
-	const { tabColors, tabActiveColors, dletBtnColor, padding, contentBackgroundColor, titleTypo, titleColor } = attributes;
+	const { tabsPadding, tabColors, tabActiveColors, titleTypo, icon, contentBG } = attributes;
+	const { size: iconSize, color, activeColor } = icon;
 
 	return <InspectorControls>
-		<PanelBody className='bPlPanelBody' title={__('Tabbed Content', 'stepped-content')}>
-
-			<PanelRow className="mt20">
-				<BoxControl
-					label={__("Top Menu Paddign", "tcb")}
-					values={padding}
-					resetValues={{
-						"top": "0px",
-						"right": "0x",
-						"bottom": "0px",
-						"left": "0px"
-					}}
-					onChange={(value) => setAttributes({ padding: value })} />
-			</PanelRow>
-
-			<BColor
-				label={__("Delete Button Color", "tcb")}
-				value={dletBtnColor}
-				onChange={(val) =>
-					setAttributes({ dletBtnColor: val })
-				}
-			/>
-
-			<Background
-				label={__("Content Bg Color", "tcb")}
-				value={contentBackgroundColor}
-				onChange={(val) =>
-					setAttributes({ contentBackgroundColor: val })
-				}
-			/>
-
+		<PanelBody className='bPlPanelBody' title={__('Tab/Menu', 'stepped-content')}>
+			<BoxControl
+				label={__("Padding", "tcb")}
+				values={tabsPadding}
+				resetValues={{
+					"top": "0px",
+					"right": "0x",
+					"bottom": "0px",
+					"left": "0px"
+				}}
+				onChange={(value) => setAttributes({ tabsPadding: value })} />
 		</PanelBody>
 
 		<PanelBody className="bPlPanelBody" title={__("Tab", "tcb")} initialOpen={false}>
-			<ColorsControl value={tabColors} onChange={val => setAttributes({ tabColors: val })} defaults={{ color: '#333', bgType: 'gradient', gradient: 'linear-gradient(to right, #e7f5dd, #f1f9eb, #f8fff1, #e4eedc, #d5e3cb)' }} />
-		</PanelBody>
+			<ColorsControl label={__("Colors", "tcb")} value={tabColors} onChange={val => setAttributes({ tabColors: val })} defaults={{ color: '#333', bgType: 'gradient', gradient: 'linear-gradient(to right, #e7f5dd, #f1f9eb, #f8fff1, #e4eedc, #d5e3cb)' }} />
 
-		{/* tabActiveColors */}
-		<PanelBody className="bPlPanelBody" title={__("Active Tab", "tcb")} initialOpen={false}>
-			<ColorsControl value={tabActiveColors} onChange={val => setAttributes({ tabActiveColors: val })} defaults={{ color: '#333', bgType: 'gradient', gradient: 'linear-gradient(to right, #019447, #f1f9eb, #10d56d, #e4eedc, #dbeccd)' }} />
-		</PanelBody>
+			<ColorsControl label={__("Active Colors", "tcb")} value={tabActiveColors} onChange={val => setAttributes({ tabActiveColors: val })} defaults={{ color: '#333', bgType: 'gradient', gradient: 'linear-gradient(to right, #019447, #f1f9eb, #10d56d, #e4eedc, #dbeccd)' }} />
 
-		{/* start */}
-		<PanelBody className="bPlPanelBody" title={__("Title", "tcb")} initialOpen={false}>
 			<Typography
-				label={__("Typography", "tcb")}
+				label={__("Title Typography", "tcb")}
 				value={titleTypo}
 				onChange={(val) => setAttributes({ titleTypo: val })}
 				produce={produce}
 			/>
 
-			<BColor
-				label={__("Color", "tcb")}
-				value={titleColor}
+			<UnitControl label={__("Global Icon Size", "tcb")} labelPosition='left' value={iconSize} onChange={val => setAttributes({ icon: { ...icon, size: val } })} units={[pxUnit(), emUnit()]} />
+
+			<BColor label={__("Global Icon Color", "tcb")} value={color} onChange={val => setAttributes({ icon: { ...icon, color: val } })} />
+			<BColor label={__("Global Icon Active Color", "tcb")} value={activeColor} onChange={val => setAttributes({ icon: { ...icon, activeColor: val } })} />
+		</PanelBody>
+
+
+		<PanelBody className='bPlPanelBody' title={__('Cotnent', 'stepped-content')} initialOpen={false}>
+			<Background
+				label={__("Background", "tcb")}
+				value={contentBG}
 				onChange={(val) =>
-					setAttributes({ titleColor: val })
+					setAttributes({ contentBG: val })
 				}
 			/>
 		</PanelBody>
-		{/* end  */}
 	</InspectorControls>;
 };
 export default Settings;

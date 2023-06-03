@@ -126,11 +126,11 @@ class TabbedContent{
 				
 		
 				#tcbTabbedContent-$cId .tabMenu {
-					padding: " . implode(' ', $padding) . ";
+					padding: " . implode(' ', $tabsPadding) . ";
 				}
 
 				#tcb-innerBlock-$cId {".
-					 $this->getBackgroundCSS ($contentBackgroundColor)
+					 $this->getBackgroundCSS ($contentBG)
 				."}
 
 				#wp-block-tcb-tabs-$cId .tcbTabbedContent .tabMenu li {".

@@ -1,1 +1,4 @@
 ticket: 20348
+
+
+color || colorType

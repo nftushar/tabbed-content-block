@@ -23,28 +23,11 @@
 			"type": "string",
 			"default": "HTML5 Audio Player"
 		},
-		"mediaType": {
-			"type": "string",
-			"default": "icon"
-		},
-		"iconClass": {
-			"type": "string",
-			"default": "fa-solid fa-play"
-		},
-		"imgURL": {
-			"type": "string",
-			"default": ""
-		},
 		"icon": {
 			"type": "object",
 			"default": {
-				"class": "fab fa-html5",
-				"fontSize": 55
+				"class": "fab fa-html5"
 			}
-		},
-		"iconLabel": {
-			"type": "string",
-			"default": ""
 		}
 	},
 	"supports": {

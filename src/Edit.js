@@ -6,7 +6,7 @@ import { BlockControls, InnerBlocks, Inserter, RichText } from '@wordpress/block
 import './editor.scss';
 import { tabInit, getBoxValue } from './utils/function';
 import { IconButton, ToolbarItem, Toolbar, Button, Dropdown } from '@wordpress/components';
-import { getBackgroundCSS, getColorsCSS, getTypoCSS, getIconCSS } from './Components/utils/getCSS';
+import { getBackgroundCSS, getColorsCSS, getTypoCSS } from './Components/utils/getCSS';
 import Settings from './Settings';
 import { IconControl } from './Components';
 
@@ -20,12 +20,15 @@ const INNER_BLOCKS_TEMPLATE = [
 
 
 const Edit = props => {
-	const { attributes, setAttributes, clientId, innerBlocks, getBlock, updateBlockAttributes } = props;
-	const { titleColor, tabColors, tabActiveColors, titleTypo, tabs, contentBackgroundColor, dletBtnColor, padding } = attributes;
+	const { attributes, setAttributes, clientId, innerBlocks, getBlock, getBlockAttributes, updateBlockAttributes, removeBlock } = props;
+	const { tabColors, tabActiveColors, icon, tabsPadding, titleTypo, tabs, contentBG } = attributes;
+
+	// {console.log(icon)}
 
 	const [firstClientId, setFirstClientId] = useState(null)
 	const [isOpen, setIsOpen] = useState(false);
 	const [activeClientId, setActiveClientId] = useState(false);
+	const [titleValue, setTitleValue] = useState({});
 	const [iconValue, setIconValue] = useState({});
 	const [tabAttribute, setTabAttribute] = useState({})
 
@@ -34,11 +37,11 @@ const Edit = props => {
 		setIsOpen(!isOpen);
 	};
 	// console.log(icon);
-	function updateTab(index, property, value) {
-		const newTabs = [...tabs];
-		newTabs[index][property] = value;
-		setAttributes({ tabs: newTabs });
-	}
+	// function updateTab(index, property, value) {
+	// 	const newTabs = [...tabs];
+	// 	newTabs[index][property] = value;
+	// 	setAttributes({ tabs: newTabs });
+	// }
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
@@ -61,15 +64,12 @@ const Edit = props => {
 
 	useEffect(() => {
 		tabInit(document.querySelector(`#tcbTabbedContent-${clientId} .tabMenu > li`), clientId)
-	}, [firstClientId])
-
-	function tabDelete(clientId) {
-		wp.data.dispatch('core/editor').removeBlock(clientId);
-	}
+	}, [firstClientId]);
 
 	useEffect(() => {
 		const block = getBlock(activeClientId);
 		setTabAttribute(block?.attributes)
+		setTitleValue(block?.attributes?.title || {})
 		setIconValue(block?.attributes?.icon || {})
 	}, [activeClientId])
 
@@ -79,6 +79,12 @@ const Edit = props => {
 		newAttributes.icon = iconValue;
 		updateBlockAttributes(activeClientId, newAttributes)
 	}, [iconValue])
+
+	useEffect(() => {
+		const newAttributes = { ...tabAttribute };
+		newAttributes.title = titleValue;
+		updateBlockAttributes(activeClientId, newAttributes)
+	}, [titleValue])
 	// console.log(iconColor);
 
 	return <div id={`wp-block-tcb-tabs-${clientId}`} className='wp-block-tcb-tabs'>
@@ -88,7 +94,17 @@ const Edit = props => {
 			${getTypoCSS(``, titleTypo)?.googleFontLink}
 			${getTypoCSS(`#wp-block-tcb-tabs-${clientId} li .tabLabel`, titleTypo)?.styles}
 
-						
+		             	#wp-block-tcb-tabs-${clientId} .tcbTabbedContent li.tab-item-icon .menuIcon i {
+							font-size:${icon.size};
+							color:${icon.color}
+						}
+						#wp-block-tcb-tabs-${clientId} .tcbTabbedContent li.active .menuIcon i {
+							color:${icon.activeColor}
+							
+						}
+						.editor-styles-wrapper .block-editor-block-list__layout.is-root-container p{
+
+						}
 						#wp-block-tcb-tabs-${clientId} .tcbTabbedContent .tabMenu li{
 							${getColorsCSS(tabColors)}
 						}
@@ -97,15 +113,11 @@ const Edit = props => {
 							${getColorsCSS(tabActiveColors)}
 						}
 
-						.wp-block-tcb-tabs .tabMenu li .fa-solid.fa-xmark{
-							color: ${dletBtnColor}
-						}
-
 						#wp-block-tcb-tabs-${clientId} .tabMenu {
-						 padding: ${getBoxValue(padding)}
+						 padding: ${getBoxValue(tabsPadding)}
 						}
 						#tcb-innerBlock-${clientId}{
-							${getBackgroundCSS(contentBackgroundColor)}
+							${getBackgroundCSS(contentBG)}
 						}
 	        `}
 
@@ -122,7 +134,7 @@ const Edit = props => {
 					renderContent={() => {
 						return <IconControl className='mt20' value={iconValue} onChange={val => {
 							setIconValue(val)
-						}} />
+						}} isSize={false} />
 					}}
 					isOpen={isOpen}
 					onClose={toggleDropdown}
@@ -134,7 +146,9 @@ const Edit = props => {
 
 		<div id={`tcbTabbedContent-${clientId}`} className="tcbTabbedContent">
 			<ul className="tabMenu">
-				{tabs.map((item, index) => {
+				{tabs.map((tab, index) => <Tab key={index} getBlockAttributes={getBlockAttributes} updateBlockAttributes={updateBlockAttributes} removeBlock={removeBlock} clientId={clientId} setActiveClientId={setActiveClientId} tab={tab} index={index} />)}
+
+				{/* {tabs.map((item, index) => {
 					const { title, icon } = item;
 					const onListClick = e => {
 						e.preventDefault();
@@ -169,19 +183,18 @@ const Edit = props => {
 						}} className="fa-solid fa-xmark" ></i>
 						{icon?.class ? <i className={icon?.class}></i> : " "}
 						<span className="tabLabel">
-							{/* before Commit */}
 
 							<RichText
-								tagName="span"
-								value={title}
-								onChange={(content) => updateTab(index, "title", content)}
+								tagName="p"
+								value={titleValue}
+								onChange={(content) => setTitleValue(content)}
 								placeholder={__("Enter Title", 'tcb-block-title')}
 								inlineToolbar
 								allowedFormats={["core/bold", "core/italic"]}
 							/>
 						</span>
 					</li>
-				})}
+				})} */}
 			</ul>
 
 			<div className='tcb-innerBlock' id={`tcb-innerBlock-${clientId}`} >
@@ -203,18 +216,84 @@ const Edit = props => {
 	</div>;
 };
 
+const Tab = ({ getBlockAttributes, updateBlockAttributes, removeBlock, clientId, setActiveClientId, tab, index }) => {
+	const { clientId: childId, title, icon } = tab;
+
+	const [childAttr, setChildAttr] = useState({});
+	const [titleValue, setTitleValue] = useState(title);
+
+	useEffect(() => {
+		setChildAttr(getBlockAttributes(childId));
+	}, [childId]);
+
+	useEffect(() => {
+		const newAttr = { ...childAttr };
+		newAttr.title = titleValue;
+		updateBlockAttributes(childId, newAttr)
+	}, [titleValue, childAttr]);
+
+	const onListClick = e => {
+		e.preventDefault();
+		tabInit(e.currentTarget, clientId);
+		setActiveClientId(childId);
+	}
+
+	return <li key={index} onClick={onListClick} className={`tab-item-icon tab-item${childId} ${index == 0 ? "active" : " "}`}>
+		<i onClick={(e) => {
+			e.preventDefault();
+			e.stopPropagation();
+
+			removeBlock(childId);
+
+			const liEl = e.target.parentElement;
+			const isActive = liEl.classList.contains('active');
+
+			if (isActive) {
+				const nextEl = liEl.nextSibling;
+				const prevEl = liEl.previousSibling;
+
+				if (prevEl) {
+					setTimeout(() => {
+						tabInit(prevEl, clientId);
+					}, 0);
+				} else if (nextEl) {
+					setTimeout(() => {
+						tabInit(nextEl, clientId);
+					}, 0);
+				}
+			}
+		}} className="fa-solid fa-xmark" ></i>
+
+		{icon?.class ? <span className='menuIcon' > <i className={icon?.class}></i> </span> : ""}
+
+		<span className="tabLabel">
+			<RichText
+				tagName="p"
+				value={titleValue}
+				onChange={(content) => setTitleValue(content)}
+				placeholder={__("Enter Title", 'tcb-block-title')}
+				inlineToolbar
+				allowedFormats={["core/bold", "core/italic"]}
+			/>
+		</span>
+	</li>
+}
+
 
 export default compose([
 	withSelect((select, { clientId }) => {
-		const { getBlocks, getBlock } = select('core/block-editor');
+		const { getBlocks, getBlock, getBlockAttributes } = select('core/block-editor');
 
 		return {
 			innerBlocks: getBlocks(clientId),
 			getBlock,
+			getBlockAttributes,
 		};
 	}),
 	withDispatch(dispatch => {
 		const { updateBlockAttributes } = dispatch('core/block-editor');
-		return { updateBlockAttributes }
+		const { removeBlock } = dispatch('core/editor');
+
+		return { updateBlockAttributes, removeBlock }
 	})
 ])(Edit)
