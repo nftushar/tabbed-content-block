@@ -5,8 +5,11 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.pageContent .container {
-	background: none !important;
+ .editor-styles-wrapper p {
+    line-height: 0 !important;
+}
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container p {
+    margin-bottom: 0.6em !important;
 }
 
 html :where(.editor-styles-wrapper) ol,

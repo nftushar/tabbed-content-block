@@ -23,7 +23,7 @@ const Edit = props => {
 	const { attributes, setAttributes, clientId, innerBlocks, getBlock, getBlockAttributes, updateBlockAttributes, removeBlock } = props;
 	const { tabColors, tabActiveColors, icon, tabsPadding, titleTypo, tabs, contentBG } = attributes;
 
-	// {console.log(icon)}
+	{console.log(tabColors)}
 
 	const [firstClientId, setFirstClientId] = useState(null)
 	const [isOpen, setIsOpen] = useState(false);
@@ -86,6 +86,7 @@ const Edit = props => {
 		updateBlockAttributes(activeClientId, newAttributes)
 	}, [titleValue])
 	// console.log(iconColor);
+	console.log(tabColors);
 
 	return <div id={`wp-block-tcb-tabs-${clientId}`} className='wp-block-tcb-tabs'>
 		<style>
@@ -94,7 +95,7 @@ const Edit = props => {
 			${getTypoCSS(``, titleTypo)?.googleFontLink}
 			${getTypoCSS(`#wp-block-tcb-tabs-${clientId} li .tabLabel`, titleTypo)?.styles}
 
-		             	#wp-block-tcb-tabs-${clientId} .tcbTabbedContent li.tab-item-icon .menuIcon i {
+		            .tcbTabbedContent-${clientId} li.tab-item-icon .menuIcon i {
 							font-size:${icon.size};
 							color:${icon.color}
 						}
@@ -102,9 +103,7 @@ const Edit = props => {
 							color:${icon.activeColor}
 							
 						}
-						.editor-styles-wrapper .block-editor-block-list__layout.is-root-container p{
 
-						}
 						#wp-block-tcb-tabs-${clientId} .tcbTabbedContent .tabMenu li{
 							${getColorsCSS(tabColors)}
 						}
@@ -144,7 +143,7 @@ const Edit = props => {
 
 		<Settings attributes={attributes} setAttributes={setAttributes}></Settings>
 
-		<div id={`tcbTabbedContent-${clientId}`} className="tcbTabbedContent">
+		<div id={`tcbTabbedContent-${clientId}`} className={`tcbTabbedContent tcbTabbedContent-${clientId}`}>
 			<ul className="tabMenu">
 				{tabs.map((tab, index) => <Tab key={index} getBlockAttributes={getBlockAttributes} updateBlockAttributes={updateBlockAttributes} removeBlock={removeBlock} clientId={clientId} setActiveClientId={setActiveClientId} tab={tab} index={index} />)}
 

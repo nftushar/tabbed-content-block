@@ -18,12 +18,11 @@ const Edit = props => {
 		<Settings attributes={attributes} setAttributes={setAttributes} />
 		<div className='wp-block-tcb-tab' id={`tcbTabbedContentTab-${clientId}`}>
 			<style>
-
-				{`.wp-block-tcb-tabs .tcbTabbedContent-${clientId} .tabMenu li.tab-item${clientId} i{
-				${getIconCSS(icon, false, icon.color ? true : false)}
+				{`.wp-block-tcb-tabs .tabMenu li.tab-item${clientId} .menuIcon i {
+				${icon?.color || icon?.gradient && getIconCSS(icon, false)}
 			}
-		    	`}
-
+			
+			`}
 			</style>
 			<InnerBlocks template={[
 				['core/heading', {
