@@ -4,42 +4,43 @@
 	"title": "Tab",
 	"description": "Tab for Tabbed content block",
 	"parent": [
-		"tcb/tabs"
+	  "tcb/tabs"
 	],
 	"icon": "welcome-widgets-menus",
 	"category": "widgets",
 	"keywords": [
-		"slider",
-		"slider content",
-		"multi tab"
+	  "slider",
+	  "slider content",
+	  "multi tab"
 	],
 	"textdomain": "b-tran",
 	"attributes": {
-		"cId": {
-			"type": "string",
-			"default": ""
-		},
-		"title": {
-			"type": "string",
-			"default": "HTML5 Audio Player"
-		},
-		"icon": {
-			"type": "object",
-			"default": {
-				"class": "fab fa-html5"
-			}
+	  "cId": {
+		"type": "string",
+		"default": ""
+	  },
+	  "title": {
+		"type": "string",
+		"default": "HTML5 Audio Player"
+	  },
+	  "icon": {
+		"type": "object",
+		"default": {
+		  "class": "fab fa-html5"
 		}
+	  }
 	},
 	"supports": {
-		"align": false,
-		"reusable": false,
-		"html": false
+	  "align": false,
+	  "reusable": false,
+	  "html": false
 	},
 	"example": {
-		"attributes": {
-			"preview": true
-		}
+	  "attributes": {
+		"preview": true
+	  }
 	},
 	"editorScript": "",
 	"script": ""
-}
+  }
+  
