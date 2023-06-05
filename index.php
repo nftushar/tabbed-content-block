@@ -86,6 +86,57 @@ class TabbedContent {
 		return $styles;
 	}
 
+	function generateCss( $value, $cssProperty ) {
+		return !$value ? '' : "$cssProperty: $value;";
+	}
+	
+	function getTypoCSS( $selector, $typo, $isFamily = true ) {
+		extract( $typo );
+		$fontFamily = $fontFamily ?? 'Default';
+		$fontCategory = $fontCategory ?? 'sans-serif';
+		$fontVariant = $fontVariant ?? 400;
+		$fontWeight = $fontWeight ?? 400;
+		$isUploadFont = $isUploadFont ?? true;
+		$fontSize = $fontSize ?? [ 'desktop' => 15, 'tablet' => 15, 'mobile' => 15 ];
+		$fontStyle = $fontStyle ?? 'normal';
+		$textTransform = $textTransform ?? 'none';
+		$textDecoration = $textDecoration ?? 'auto';
+		$lineHeight = $lineHeight ?? '135%';
+		$letterSpace = $letterSpace ?? '0px';
+	
+		$isEmptyFamily = !$isFamily || !$fontFamily || 'Default' === $fontFamily;
+		$desktopFontSize = $fontSize['desktop'] ?? $fontSize;
+		$tabletFontSize = $fontSize['tablet'] ?? $desktopFontSize;
+		$mobileFontSize = $fontSize['mobile'] ?? $tabletFontSize;
+	
+		$styles = ( $isEmptyFamily ? '' : "font-family: '$fontFamily', $fontCategory;" )
+			. $this->generateCss( $fontWeight, 'font-weight' )
+			. 'font-size: '. $desktopFontSize .'px;'
+			. $this->generateCss( $fontStyle, 'font-style' )
+			. $this->generateCss( $textTransform, 'text-transform' )
+			. $this->generateCss( $textDecoration, 'text-decoration' )
+			. $this->generateCss( $lineHeight, 'line-height' )
+			. $this->generateCss( $letterSpace, 'letter-spacing' );
+	
+		// Google font link
+		$linkQuery = ( !$fontVariant || 400 === $fontVariant ) ? '' : ( '400i' === $fontVariant ? ':ital@1' : ( false !== strpos( $fontVariant, '00i' ) ? ': ital, wght@1, '. str_replace( '00i', '00', $fontVariant ) .' ' : ": wght@$fontVariant " ) );
+	
+		$link = $isEmptyFamily ? '' : 'https://fonts.googleapis.com/css2?family='. str_replace( ' ', '+', $fontFamily ) ."$linkQuery&display=swap";
+	
+		return [
+			'googleFontLink' => !$isUploadFont || $isEmptyFamily ? '' : "@import url( $link );",
+			'styles' => preg_replace( '/\s+/', ' ', trim( "
+				$selector{ $styles }
+				@media (max-width: 768px) {
+					$selector{ font-size: $tabletFontSize" . "px; }
+				}
+				@media (max-width: 576px) {
+					$selector{ font-size: $mobileFontSize" . "px; }
+				}
+			" ) )
+		];
+	}
+
 	function enqueueBlockAssets() {
 		wp_register_style('fontAwesome', TCB_ASSETS_DIR . 'css/fontawesome.min.css', [], '6.4.0'); // Font Awesome
 	}
@@ -112,30 +163,36 @@ class TabbedContent {
 		ob_start(); ?>
 		<div class='<?php echo esc_attr($blockClassName); ?>' id='tcbTabbedContent-<?php echo esc_attr($cId); ?>' data-attributes='<?php echo esc_attr(wp_json_encode($attributes)); ?>'>
 
-		<?php echo ("
-			           <style>   
-								#tcbTabbedContent-$cId .tabMenu {
-									padding: " . esc_attr(implode(' ', $tabsPadding)) . ";
-								}
-								#tcbTabbedContent-$cId .tabMenu li{" .
-									esc_attr($this->getColorsCSS($tabColors))
-								. "}
-								#tcbTabbedContent-$cId .tabMenu li.active {" .
-									esc_attr($this->getColorsCSS($tabActiveColors))
-								. "}
-								#tcbTabbedContent-$cId .tabMenu li .menuIcon i{
-									font-size: " . esc_attr($icon['size']) . ";
-									color: " . esc_attr($icon['color']) . ";
-								}
-								#tcbTabbedContent-$cId .tabMenu li.active .menuIcon i{
-									color: " . esc_attr($icon['activeColor']) . ";
-								}
-					
-								#tcbTabbedContent-$cId .tabContent {" .
-									esc_attr($this->getBackgroundCSS($contentBG))
-									. "}
+		<style>
+<?php 
 
-				        </style>"); ?>
+echo $this->getTypoCSS( '', $typography )['googleFontLink'];
+echo $this->getTypoCSS( "selector", $typography )['styles'];
+?>
+
+			<?php echo "
+			#tcbTabbedContent-$cId .tabMenu {
+				padding: " . esc_html(implode(' ', $tabsPadding)) . ";
+			}
+			#tcbTabbedContent-$cId .tabMenu li{" .
+				esc_html($this->getColorsCSS($tabColors))
+			. "}
+			#tcbTabbedContent-$cId .tabMenu li.active {" .
+				esc_html($this->getColorsCSS($tabActiveColors))
+			. "}
+			#tcbTabbedContent-$cId .tabMenu li .menuIcon i{
+				font-size: " . esc_html($icon['size']) . ";
+				color: " . esc_html($icon['color']) . ";
+			}
+			#tcbTabbedContent-$cId .tabMenu li.active .menuIcon i{
+				color: " . esc_html($icon['activeColor']) . ";
+			}
+
+			#tcbTabbedContent-$cId .tabContent {" .
+				esc_html($this->getBackgroundCSS($contentBG))
+			. "}
+				"; ?>
+			</style>
 
 			<div class='tcbTabbedContent'>
 				<ul class='tabMenu'>
@@ -144,7 +201,7 @@ class TabbedContent {
 
 						$iconEl = isset($icon['class']) ? "<span class='menuIcon'><i class='" . esc_attr($icon["class"]) . "'></i></span>" : '';
 
-						$iconStyles = isset($icon['color']) || isset($icon['gradient']) ? esc_attr($this->getIconCSS($icon, false)) : '';
+						$iconStyles = isset($icon['color']) || isset($icon['gradient']) ? $this->getIconCSS($icon, false) : '';
 					?>
 						<li id='menuItem-<?php echo esc_attr($clientId); ?>'>
 							<style>
@@ -158,7 +215,7 @@ class TabbedContent {
 							<?php echo wp_kses_post($iconEl); ?>
 
 							<span class='tabLabel'>
-								<?php echo esc_html($title); ?>
+								<?php echo wp_kses_post($title); ?>
 							</span>
 						</li>
 					<?php } ?>
