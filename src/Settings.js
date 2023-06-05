@@ -37,10 +37,10 @@ const Settings = ({ attributes, setAttributes }) => {
 				produce={produce}
 			/>
 
-			<UnitControl label={__("Global Icon Size", "tcb")} labelPosition='left' value={iconSize} onChange={val => setAttributes({ icon: { ...icon, size: val } })} units={[pxUnit(), emUnit()]} />
+			<UnitControl label={__("Icon Size", "tcb")} labelPosition='left' value={iconSize} onChange={val => setAttributes({ icon: { ...icon, size: val } })} units={[pxUnit(), emUnit()]} />
 
-			<BColor label={__("Global Icon Color", "tcb")} value={color} onChange={val => setAttributes({ icon: { ...icon, color: val } })} />
-			<BColor label={__("Global Icon Active Color", "tcb")} value={activeColor} onChange={val => setAttributes({ icon: { ...icon, activeColor: val } })} />
+			<BColor label={__("Icon Color", "tcb")} value={color} onChange={val => setAttributes({ icon: { ...icon, color: val } })} />
+			<BColor label={__("Icon Active Color", "tcb")} value={activeColor} onChange={val => setAttributes({ icon: { ...icon, activeColor: val } })} />
 		</PanelBody>
 
 

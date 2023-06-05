@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Tabbed Content- New
  * Description: Create tabbed sections in WordPress for organized content and improved user engagement.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: bPlugins LLC
  * Author URI: http://bplugins.com
  * License: GPLv3
@@ -23,10 +23,8 @@ define('TCB_ASSETS_DIR', plugin_dir_url(__FILE__) . 'assets/');
 require_once(__DIR__ . '/tab/block.php');
 
 // Tabbed Content
-class TabbedContent
-{
-	function __construct()
-	{
+class TabbedContent {
+	function __construct() {
 		add_action('enqueue_block_assets', [$this, 'enqueueBlockAssets']);
 		add_action('init', [$this, 'onInit']);
 	}
@@ -49,12 +47,6 @@ class TabbedContent
 		$styles .= $isColor ? $colorCSS : '';
 
 		return $styles;
-	}
-
-
-	function enqueueBlockAssets()
-	{
-		wp_register_style('fontAwesome', TCB_ASSETS_DIR . 'css/fontawesome.min.css', [], '6.4.0'); // Font Awesome
 	}
 
 	function getColorsCSS($colors)
@@ -100,6 +92,12 @@ class TabbedContent
 	}
 
 
+	function enqueueBlockAssets()
+	{
+		wp_register_style('fontAwesome', TCB_ASSETS_DIR . 'css/fontawesome.min.css', [], '6.4.0'); // Font Awesome
+	}
+
+
 	function onInit()
 	{
 		wp_register_style('tcb-tabs-style', plugins_url('dist/style.css', __FILE__), ['fontAwesome'], TCB_PLUGIN_VERSION); // Style
@@ -114,82 +112,76 @@ class TabbedContent
 		wp_set_script_translations('tcb-tabs-editor-script', 'tabbed-content', plugin_dir_path(__FILE__) . 'languages'); // Translate
 	}
 
-	function render($attributes, $content)
-	{
 
+
+	function render($attributes, $content) {
 		extract($attributes);
-		$className = $className ?? '';
-		$blockClassName = 'wp-block-tcb-tabs ' . $className . ' align' . $align;
+	
+		$className = isset($className) ? esc_attr($className) : '';
+		$blockClassName = 'wp-block-tcb-tabs ' . $className . ' align' . esc_attr($align);
+	
+		ob_start(); ?>
+		<div class='<?php echo esc_attr($blockClassName); ?>' id='tcbTabbedContent-<?php echo esc_attr($cId); ?>' data-attributes='<?php echo esc_attr(wp_json_encode($attributes)); ?>'>
 
-		ob_start();
-?>
+		<?php echo ("
+			           <style>   
+								#tcbTabbedContent-$cId .tabMenu {
+									padding: " . esc_attr(implode(' ', $tabsPadding)) . ";
+								}
+								#tcbTabbedContent-$cId .tabMenu li{" .
+									esc_attr($this->getColorsCSS($tabColors))
+								. "}
+								#tcbTabbedContent-$cId .tabMenu li.active {" .
+									esc_attr($this->getColorsCSS($tabActiveColors))
+								. "}
+								#tcbTabbedContent-$cId .tabMenu li .menuIcon i{
+									font-size: " . esc_attr($icon['size']) . ";
+									color: " . esc_attr($icon['color']) . ";
+								}
+								#tcbTabbedContent-$cId .tabMenu li.active .menuIcon i{
+									color: " . esc_attr($icon['activeColor']) . ";
+								}
+					
+								#tcbTabbedContent-$cId .tabContent {" .
+									esc_attr($this->getBackgroundCSS($contentBG))
+									. "}
 
+				        </style>"); ?>
 
-		<div class='<?php echo esc_attr($blockClassName); ?>' id='wp-block-tcb-tabs-<?php echo esc_attr($cId); ?>' data-attributes='<?php echo esc_attr(wp_json_encode($attributes)); ?>'>
-			<style>
-				#tcbTabbedContent- <?php echo esc_attr($cId); ?> {}
-			</style>
-			<?php
-			echo "<style>
-
-			.wp-block-tcb-tabs .tabMenu li img, .wp-block-tcb-tabs .tab-item-icon .menuIcon i{
-				font-size:" . $icon["size"] . ";
-			}
-		
-				#tcbTabbedContent-$cId .tabMenu {
-					padding: " . implode(' ', $tabsPadding) . ";
-				}
-
-				#tcb-innerBlock-$cId {" .
-				$this->getBackgroundCSS($contentBG)
-				. "}
-				
-                #wp-block-tcb-tabs-$cId .tcbTabbedContent .tabMenu li{" .
-				$this->getColorsCSS($tabColors)
-				. "}
-
-				#wp-block-tcb-tabs-$cId .tcbTabbedContent .tabMenu li.active {" .
-				$this->getColorsCSS($tabActiveColors)
-				. "}
-			</style>";
-			?>
-
-
-			<div class='tcbTabbedContent' id='tcbTabbedContent-<?php echo esc_attr($cId); ?>'>
-				<ul class='tabMenu tab-item-icon'>
+			<div class='tcbTabbedContent'>
+				<ul class='tabMenu'>
 					<?php foreach ($tabs as $index => $tab) {
-
 						extract($tab);
-						$iconEl = isset($icon['class']) ? "<span class='menuIcon'>  <i class='" . $icon["class"] . "'></i> </span>" : '';
+	
+						$iconEl = isset($icon['class']) ? "<span class='menuIcon'><i class='" . esc_attr($icon["class"]) . "'></i></span>" : '';
+	
+						$iconStyles = isset($icon['color']) || isset($icon['gradient']) ? esc_attr($this->getIconCSS($icon, false)) : '';
 					?>
-						<li id='tcbTabbedContent-icon-<?php echo esc_attr($clientId); ?>'>
+						<li id='menuItem-<?php echo esc_attr($clientId); ?>'>
+							<style>
+								<?php echo esc_html("
+								#tcbTabbedContent-$cId .tabMenu #menuItem-$clientId .menuIcon i{
+									$iconStyles
+								}
+								"); ?>
+							</style>
+	
 							<?php echo wp_kses_post($iconEl); ?>
-
+	
 							<span class='tabLabel'>
 								<?php echo wp_kses_post($title); ?>
 							</span>
 						</li>
-
 					<?php } ?>
-
 				</ul>
-				<?php foreach ($tabs as $index => $tab) {
-					extract($tab); ?>
-					<style>
-						<?php
-						print_r($tab);
-						// echo "#tcbTabbedContent-icon-$clientId i {".
-						// 	$this->getIconCSS($icon)
-						// ."}"
-						?>
-					</style>
-				<?php } ?>
-				<div class='tcb-innerBlock' id='<?php echo "tcb-innerBlock-$cId" ?>'>
+	
+				<div class='tabContent'>
 					<?php echo wp_kses_post($content); ?>
 				</div>
 			</div>
 		</div>
-<?php return ob_get_clean();
+		<?php return ob_get_clean();
 	} // Render
+	
 }
 new TabbedContent();

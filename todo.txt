@@ -3,7 +3,4 @@
 global icon size, color
 
 
-.wp-block-tcb-tabs .tabMenu li img, .wp-block-tcb-tabs .tab-item-icon .menuIcon i
-
-editor-->
-.tcbTabbedContent-154a714e-ef23-49de-aefb-e67ac75d1a2f li.tab-item-icon .menuIcon i
+.wp-block-tcb-tabs .tab-item-icon .menuIcon i

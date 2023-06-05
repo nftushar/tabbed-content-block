@@ -1,29 +1,19 @@
 import { useEffect } from 'react';
 import { InnerBlocks } from '@wordpress/block-editor';
+
 import Settings from './Settings';
-import { getIconCSS } from '../../../Components/Helper/getCSS';
 
 ////////  Tap Manue  ///////////////////////
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId } = props;
-	const { icon } = attributes;
-
 
 	useEffect(() => { clientId && setAttributes({ cId: clientId.substring(0, 10) }); }, [clientId]); // Set & Update clientId to cId
 
-	// console.log(icon);
-
 	return <>
 		<Settings attributes={attributes} setAttributes={setAttributes} />
+
 		<div className='wp-block-tcb-tab' id={`tcbTabbedContentTab-${clientId}`}>
-			<style>
-				{`.wp-block-tcb-tabs .tabMenu li.tab-item${clientId} .menuIcon i {
-				${icon?.color || icon?.gradient && getIconCSS(icon, false)}
-			}
-			
-			`}
-			</style>
 			<InnerBlocks template={[
 				['core/heading', {
 					content: `Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC

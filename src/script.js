@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const tabs = block.querySelectorAll('.tabMenu li');
         tabInit(block.querySelector('.tabMenu li'), cId);
+
+
         tabs.forEach((tab) => {
             tab.addEventListener('click', function () {
                 tabInit(tab, cId)

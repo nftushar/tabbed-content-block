@@ -6,7 +6,7 @@ import { BlockControls, InnerBlocks, Inserter, RichText } from '@wordpress/block
 import './editor.scss';
 import { tabInit, getBoxValue } from './utils/function';
 import { IconButton, ToolbarItem, Toolbar, Button, Dropdown } from '@wordpress/components';
-import { getBackgroundCSS, getColorsCSS, getTypoCSS } from './Components/utils/getCSS';
+import { getBackgroundCSS, getColorsCSS, getIconCSS, getTypoCSS } from './Components/utils/getCSS';
 import Settings from './Settings';
 import { IconControl } from './Components';
 
@@ -23,7 +23,6 @@ const Edit = props => {
 	const { attributes, setAttributes, clientId, innerBlocks, getBlock, getBlockAttributes, updateBlockAttributes, removeBlock } = props;
 	const { tabColors, tabActiveColors, icon, tabsPadding, titleTypo, tabs, contentBG } = attributes;
 
-	{console.log(tabColors)}
 
 	const [firstClientId, setFirstClientId] = useState(null)
 	const [isOpen, setIsOpen] = useState(false);
@@ -84,44 +83,36 @@ const Edit = props => {
 		const newAttributes = { ...tabAttribute };
 		newAttributes.title = titleValue;
 		updateBlockAttributes(activeClientId, newAttributes)
-	}, [titleValue])
-	// console.log(iconColor);
-	console.log(tabColors);
+	}, [titleValue]);
 
-	return <div id={`wp-block-tcb-tabs-${clientId}`} className='wp-block-tcb-tabs'>
-		<style>
-			{`
-
+	return <div className='wp-block-tcb-tabs' id={`tcbTabbedContent-${clientId}`}>
+		<style>{`
 			${getTypoCSS(``, titleTypo)?.googleFontLink}
-			${getTypoCSS(`#wp-block-tcb-tabs-${clientId} li .tabLabel`, titleTypo)?.styles}
+			${getTypoCSS(`#tcbTabbedContent-${clientId} li .tabLabel`, titleTypo)?.styles}
 
-		            .tcbTabbedContent-${clientId} li.tab-item-icon .menuIcon i {
-							font-size:${icon.size};
-							color:${icon.color}
-						}
-						#wp-block-tcb-tabs-${clientId} .tcbTabbedContent li.active .menuIcon i {
-							color:${icon.activeColor}
-							
-						}
+			#tcbTabbedContent-${clientId} .tabMenu {
+				padding: ${getBoxValue(tabsPadding)}
+			}
+			#tcbTabbedContent-${clientId} .tabMenu li{
+				${getColorsCSS(tabColors)}
+			}
+			#tcbTabbedContent-${clientId} .tabMenu li.active{
+				${getColorsCSS(tabActiveColors)}
+			}
+			.tcbTabbedContent-${clientId} .tabMenu li .menuIcon i {
+				font-size:${icon.size};
+				color:${icon.color}
+			}
+			.tcbTabbedContent-${clientId} .tabMenu li.active .menuIcon i {
+				color:${icon.activeColor}
+			}
+	
+			.tcbTabbedContent-${clientId} .tabContent{
+				${getBackgroundCSS(contentBG)}
+			}
+	    `}</style>
 
-						#wp-block-tcb-tabs-${clientId} .tcbTabbedContent .tabMenu li{
-							${getColorsCSS(tabColors)}
-						}
-
-						#wp-block-tcb-tabs-${clientId} .tcbTabbedContent .tabMenu li.active{
-							${getColorsCSS(tabActiveColors)}
-						}
-
-						#wp-block-tcb-tabs-${clientId} .tabMenu {
-						 padding: ${getBoxValue(tabsPadding)}
-						}
-						#tcb-innerBlock-${clientId}{
-							${getBackgroundCSS(contentBG)}
-						}
-	        `}
-
-
-		</style>
+		{/* Icon Single Color Controll */}
 		<BlockControls>
 			<Toolbar label="Options">
 				<Dropdown
@@ -146,58 +137,9 @@ const Edit = props => {
 		<div id={`tcbTabbedContent-${clientId}`} className={`tcbTabbedContent tcbTabbedContent-${clientId}`}>
 			<ul className="tabMenu">
 				{tabs.map((tab, index) => <Tab key={index} getBlockAttributes={getBlockAttributes} updateBlockAttributes={updateBlockAttributes} removeBlock={removeBlock} clientId={clientId} setActiveClientId={setActiveClientId} tab={tab} index={index} />)}
-
-				{/* {tabs.map((item, index) => {
-					const { title, icon } = item;
-					const onListClick = e => {
-						e.preventDefault();
-						tabInit(e.currentTarget, clientId);
-						setActiveClientId(item.clientId);
-					}
-
-					return <li key={index} onClick={onListClick} className={`tab-item${item.clientId} ${index == 0 ? "active" : " "}`}>
-						<i onClick={(e) => {
-							e.preventDefault();
-							e.stopPropagation();
-
-							tabDelete(item.clientId);
-
-							const liEl = e.target.parentElement;
-							const isActive = liEl.classList.contains('active');
-
-							if (isActive) {
-								const nextEl = liEl.nextSibling;
-								const prevEl = liEl.previousSibling;
-
-								if (prevEl) {
-									setTimeout(() => {
-										tabInit(prevEl, clientId);
-									}, 0);
-								} else if (nextEl) {
-									setTimeout(() => {
-										tabInit(nextEl, clientId);
-									}, 0);
-								}
-							}
-						}} className="fa-solid fa-xmark" ></i>
-						{icon?.class ? <i className={icon?.class}></i> : " "}
-						<span className="tabLabel">
-
-							<RichText
-								tagName="p"
-								value={titleValue}
-								onChange={(content) => setTitleValue(content)}
-								placeholder={__("Enter Title", 'tcb-block-title')}
-								inlineToolbar
-								allowedFormats={["core/bold", "core/italic"]}
-							/>
-						</span>
-					</li>
-				})} */}
 			</ul>
 
-			<div className='tcb-innerBlock' id={`tcb-innerBlock-${clientId}`} >
-
+			<div className='tabContent'>
 				<InnerBlocks allowedBlocks={['b-temp/tab']} template={INNER_BLOCKS_TEMPLATE} renderAppender={() =>
 					<Inserter rootClientId={clientId}
 						isAppender
@@ -237,7 +179,13 @@ const Tab = ({ getBlockAttributes, updateBlockAttributes, removeBlock, clientId,
 		setActiveClientId(childId);
 	}
 
-	return <li key={index} onClick={onListClick} className={`tab-item-icon tab-item${childId} ${index == 0 ? "active" : " "}`}>
+	return <li key={index} onClick={onListClick} className={index === 0 ? "active" : ""} id={`menuItem-${childId}`}>
+		<style>
+			{`#tcbTabbedContent-${clientId} .tabMenu #menuItem-${childId} .menuIcon i{
+				${(icon?.color || icon?.gradient) && getIconCSS(icon, false)}
+			}`}
+		</style>
+
 		<i onClick={(e) => {
 			e.preventDefault();
 			e.stopPropagation();
@@ -263,7 +211,7 @@ const Tab = ({ getBlockAttributes, updateBlockAttributes, removeBlock, clientId,
 			}
 		}} className="fa-solid fa-xmark" ></i>
 
-		{icon?.class ? <span className='menuIcon' > <i className={icon?.class}></i> </span> : ""}
+		{icon?.class ? <span className='menuIcon'> <i className={icon?.class}></i> </span> : ""}
 
 		<span className="tabLabel">
 			<RichText
