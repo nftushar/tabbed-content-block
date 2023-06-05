@@ -1,6 +1,0 @@
-
-
-global icon size, color
-
-
-.wp-block-tcb-tabs .tab-item-icon .menuIcon i
