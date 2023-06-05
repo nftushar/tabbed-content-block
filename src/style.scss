@@ -5,9 +5,10 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.editor-styles-wrapper p {
+ .editor-styles-wrapper p {
 	line-height: 0 !important;
 }
+
 .editor-styles-wrapper .block-editor-block-list__layout.is-root-container p {
 	margin-bottom: 0.6em !important;
 }
@@ -173,6 +174,7 @@ html :where(.editor-styles-wrapper) ul {
 		}
 	}
 }
+
 .tcbTabContentPopover .components-popover__content {
 	width: 280px;
 }
