@@ -164,11 +164,11 @@ class TabbedContent {
 		<div class='<?php echo esc_attr($blockClassName); ?>' id='tcbTabbedContent-<?php echo esc_attr($cId); ?>' data-attributes='<?php echo esc_attr(wp_json_encode($attributes)); ?>'>
 
 		<style>
-<?php 
+			<?php 
 
-echo $this->getTypoCSS( '', $typography )['googleFontLink'];
-echo $this->getTypoCSS( "selector", $typography )['styles'];
-?>
+			echo $this->getTypoCSS( '', $typography )['googleFontLink'];
+			echo $this->getTypoCSS( "selector", $typography )['styles'];
+			?>
 
 			<?php echo "
 			#tcbTabbedContent-$cId .tabMenu {
@@ -193,6 +193,8 @@ echo $this->getTypoCSS( "selector", $typography )['styles'];
 			. "}
 				"; ?>
 			</style>
+
+
 
 			<div class='tcbTabbedContent'>
 				<ul class='tabMenu'>
