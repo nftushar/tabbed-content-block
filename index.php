@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: Tabbed Content
+ * Plugin Name: Tabbed Content- New
  * Description: Create tabbed sections in WordPress for organized content and improved user engagement.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: bPlugins LLC
  * Author URI: http://bplugins.com
  * License: GPLv3
@@ -160,39 +160,37 @@ class TabbedContent {
 		$className = isset($className) ? esc_attr($className) : '';
 		$blockClassName = 'wp-block-tcb-tabs ' . $className . ' align' . esc_attr($align);
 
+		$mainSl = "#tcbTabbedContent-$cId";
+		$tabMenuSl = "$mainSl .tabMenu";
+
+		$styles = $this->getTypoCSS( '', $typography )['googleFontLink']
+		. $this->getTypoCSS( "selector", $typography )['styles']
+		. " $tabMenuSl {
+			padding: ". implode(' ', $tabsPadding) .";
+		}
+		$tabMenuSl li{".
+			$this->getColorsCSS($tabColors)
+		."}
+		$tabMenuSl li.active {".
+			$this->getColorsCSS($tabActiveColors)
+		."}
+		$tabMenuSl li .menuIcon i{
+			font-size: ". $icon['size'] .";
+			color: ". $icon['color'] .";
+		}
+		$tabMenuSl li.active .menuIcon i{
+			color: ". $icon['activeColor'] .";
+		}
+		$mainSl .tabContent {".
+			$this->getBackgroundCSS($contentBG)
+		."}";
+
 		ob_start(); ?>
 		<div class='<?php echo esc_attr($blockClassName); ?>' id='tcbTabbedContent-<?php echo esc_attr($cId); ?>' data-attributes='<?php echo esc_attr(wp_json_encode($attributes)); ?>'>
 
 		<style>
-			<?php 
-
-			echo $this->getTypoCSS( '', $typography )['googleFontLink'];
-			echo $this->getTypoCSS( "selector", $typography )['styles'];
-			?>
-
-			<?php echo "
-			#tcbTabbedContent-$cId .tabMenu {
-				padding: " . esc_html(implode(' ', $tabsPadding)) . ";
-			}
-			#tcbTabbedContent-$cId .tabMenu li{" .
-				esc_html($this->getColorsCSS($tabColors))
-			. "}
-			#tcbTabbedContent-$cId .tabMenu li.active {" .
-				esc_html($this->getColorsCSS($tabActiveColors))
-			. "}
-			#tcbTabbedContent-$cId .tabMenu li .menuIcon i{
-				font-size: " . esc_html($icon['size']) . ";
-				color: " . esc_html($icon['color']) . ";
-			}
-			#tcbTabbedContent-$cId .tabMenu li.active .menuIcon i{
-				color: " . esc_html($icon['activeColor']) . ";
-			}
-
-			#tcbTabbedContent-$cId .tabContent {" .
-				esc_html($this->getBackgroundCSS($contentBG))
-			. "}
-				"; ?>
-			</style>
+			<?php echo esc_html( $styles ); ?>
+		</style>
 
 
 
