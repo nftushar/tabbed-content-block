@@ -159,7 +159,7 @@ class TabbedContent {
 
 		$className = isset($className) ? esc_attr($className) : '';
 		$blockClassName = 'wp-block-tcb-tabs ' . $className . ' align' . esc_attr($align);
-
+//veriable for commom  css clss/id 
 		$mainSl = "#tcbTabbedContent-$cId";
 		$tabMenuSl = "$mainSl .tabMenu";
 
