@@ -47,12 +47,6 @@
         "left": "0px"
       }
     },
-    "typography": {
-      "type": "object",
-      "default": {
-        "fontSize": 16
-      }
-    },
     "tabColors": {
       "type": "object",
       "default": {

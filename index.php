@@ -142,7 +142,7 @@ class TabbedContent {
 	}
 
 	function onInit() {
-		wp_register_style('tcb-tabs-style', plugins_url('dist/style.css', __FILE__), ['fontAwesome'], TCB_PLUGIN_VERSION); // Style
+		wp_register_style('tcb-tabs-style', plugins_url('dist/style.css', __FILE__), [ 'fontAwesome' ], TCB_PLUGIN_VERSION); // Style
 		wp_register_style('tcb-tabs-editor-style', plugins_url('dist/editor.css', __FILE__), [], TCB_PLUGIN_VERSION); // Backend Style
 
 		register_block_type(__DIR__, [
@@ -157,62 +157,58 @@ class TabbedContent {
 	function render($attributes, $content) {
 		extract($attributes);
 
-		$className = isset($className) ? esc_attr($className) : '';
-		$blockClassName = 'wp-block-tcb-tabs ' . $className . ' align' . esc_attr($align);
-//veriable for commom  css clss/id 
+		$className = $className ?? '';
+		$blockClassName = "wp-block-tcb-tabs $className align$align";
+		
 		$mainSl = "#tcbTabbedContent-$cId";
 		$tabMenuSl = "$mainSl .tabMenu";
 
-		$styles = $this->getTypoCSS( '', $typography )['googleFontLink']
-		. $this->getTypoCSS( "selector", $typography )['styles']
-		. " $tabMenuSl {
-			padding: ". implode(' ', $tabsPadding) .";
-		}
-		$tabMenuSl li{".
-			$this->getColorsCSS($tabColors)
-		."}
-		$tabMenuSl li.active {".
-			$this->getColorsCSS($tabActiveColors)
-		."}
-		$tabMenuSl li .menuIcon i{
-			font-size: ". $icon['size'] .";
-			color: ". $icon['color'] .";
-		}
-		$tabMenuSl li.active .menuIcon i{
-			color: ". $icon['activeColor'] .";
-		}
-		$mainSl .tabContent {".
-			$this->getBackgroundCSS($contentBG)
-		."}";
+		$styles = $this->getTypoCSS( '', $titleTypo )['googleFontLink'] .
+			$this->getTypoCSS( "$tabMenuSl .tabLabel", $titleTypo )['styles'] . "
+			$tabMenuSl {
+				padding: ". implode(' ', $tabsPadding) .";
+			}
+			$tabMenuSl li{".
+				$this->getColorsCSS($tabColors)
+			."}
+			$tabMenuSl li.active {".
+				$this->getColorsCSS($tabActiveColors)
+			."}
+			$tabMenuSl li .menuIcon i{
+				font-size: ". $icon['size'] .";
+				color: ". $icon['color'] .";
+			}
+			$tabMenuSl li.active .menuIcon i{
+				color: ". $icon['activeColor'] .";
+			}
+			$mainSl .tabContent {".
+				$this->getBackgroundCSS($contentBG)
+			."}
+		";
 
 		ob_start(); ?>
 		<div class='<?php echo esc_attr($blockClassName); ?>' id='tcbTabbedContent-<?php echo esc_attr($cId); ?>' data-attributes='<?php echo esc_attr(wp_json_encode($attributes)); ?>'>
-
-		<style>
-			<?php echo esc_html( $styles ); ?>
-		</style>
-
-
+			<style>
+				<?php echo wp_kses_post( $styles ); ?>
+			</style>
 
 			<div class='tcbTabbedContent'>
 				<ul class='tabMenu'>
 					<?php foreach ($tabs as $index => $tab) {
 						extract($tab);
 
-						$iconEl = isset($icon['class']) ? "<span class='menuIcon'><i class='" . esc_attr($icon["class"]) . "'></i></span>" : '';
+						$iconEl = isset($icon['class']) ? "<span class='menuIcon'><i class='" . $icon["class"] . "'></i></span>" : '';
 
 						$iconStyles = isset($icon['color']) || isset($icon['gradient']) ? $this->getIconCSS($icon, false) : '';
 					?>
-						<li id='menuItem-<?php echo esc_attr($clientId); ?>'>
+						<li id='menuItem-<?php echo esc_attr($cId); ?>'>
 							<style>
-								<?php echo esc_html("
-								#tcbTabbedContent-$cId .tabMenu #menuItem-$clientId .menuIcon i{
+								<?php echo esc_html( "#tcbTabbedContent-$cId .tabMenu #menuItem-$cId .menuIcon i{
 									$iconStyles
-								}
-								"); ?>
+								}" ); ?>
 							</style>
 
-							<?php echo wp_kses_post($iconEl); ?>
+							<?php echo wp_kses_post( $iconEl ); ?>
 
 							<span class='tabLabel'>
 								<?php echo wp_kses_post($title); ?>
