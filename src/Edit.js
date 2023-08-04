@@ -19,8 +19,8 @@ const INNER_BLOCKS_TEMPLATE = [
 
 
 const Edit = props => {
-	const { attributes, setAttributes, clientId, innerBlocks, getBlock, getBlockAttributes, updateBlockAttributes, removeBlock } = props;
-	const { tabColors, tabActiveColors, icon, tabsPadding, titleTypo, tabs, contentBG } = attributes;
+  const { attributes, setAttributes, clientId, innerBlocks, getBlock, getBlockAttributes, updateBlockAttributes, removeBlock } = props;
+  const { tabColors, tabActiveColors, icon, tabsPadding, titleTypo, tabs, contentBG } = attributes;
 
   // State variables
   const [firstClientId, setFirstClientId] = useState(null);
@@ -253,16 +253,13 @@ const Tab = ({ getBlockAttributes, updateBlockAttributes, removeBlock, clientId,
         </span>
       ) : null}
 
-      <span className="tabLabel">
-        <RichText
-          tagName="p"
-          value={titleValue}
-          onChange={(content) => setTitleValue(content)}
-          placeholder={__("Enter Title", 'tcb-block-title')}
-          inlineToolbar
-          allowedFormats={["core/bold", "core/italic"]}
-        />
-      </span>
+      <RichText tagName="span" className="tabLabel"
+        value={titleValue}
+        onChange={(content) => setTitleValue(content)}
+        placeholder={__("Enter Title", 'tcb-block-title')}
+        inlineToolbar
+        allowedFormats={["core/bold", "core/italic"]}
+      />
     </li>
   );
 };

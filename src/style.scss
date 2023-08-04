@@ -96,6 +96,13 @@ html :where(.editor-styles-wrapper) ul {
 			.tabLabel {
 				display: inline-block;
 				font-weight: 700;
+				margin: 0;
+
+				*{
+					font-size: inherit;
+					line-height: inherit;
+					margin: inherit !important;
+				}
 			}
 
 			&.active {
