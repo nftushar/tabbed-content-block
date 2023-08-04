@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Tabbed Content- New
  * Description: Create tabbed sections in WordPress for organized content and improved user engagement.
- * Version: 1.0.1
+ * Version: 1.0.0
  * Author: bPlugins LLC
  * Author URI: http://bplugins.com
  * License: GPLv3
@@ -159,7 +159,7 @@ class TabbedContent {
 
 		$className = isset($className) ? esc_attr($className) : '';
 		$blockClassName = 'wp-block-tcb-tabs ' . $className . ' align' . esc_attr($align);
-//veriable for commom  css clss/id  
+//veriable for commom  css clss/id 
 		$mainSl = "#tcbTabbedContent-$cId";
 		$tabMenuSl = "$mainSl .tabMenu";
 

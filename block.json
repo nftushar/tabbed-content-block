@@ -1,7 +1,7 @@
 {
   "apiVersion": "1",
   "name": "tcb/tabs",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "title": "Tabbed Content",
   "category": "widgets",
   "keywords": ["tcb", "tcb-tabbed-content"],
