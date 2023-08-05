@@ -1,4 +1,4 @@
-=== Block Directory - Block Directory Block ===
+=== Tabbed Content Block ===
 Contributors: abuhayat, 
 Donate link: https://gum.co/wpdonate/
 Tags: Tabs, content, block, tabbed-content-block, Gutenberg block

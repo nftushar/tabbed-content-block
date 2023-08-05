@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Tabbed Content- New
+ * Plugin Name: Tabbed Content Block
  * Description: Create tabbed sections in WordPress for organized content and improved user engagement.
  * Version: 1.0.0
  * Author: bPlugins LLC
