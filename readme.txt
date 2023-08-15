@@ -3,7 +3,7 @@ Contributors: abuhayat,
 Donate link: https://gum.co/wpdonate/
 Tags: Tabs, content, block, tabbed-content-block, Gutenberg block
 Requires at least: 5.3+ 
-Tested up to: 6.2.2
+Tested up to: 6.3
 Stable tag: 1.0.0
 Requires PHP: 7.1
 License: GPLv3 or later

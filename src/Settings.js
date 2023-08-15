@@ -1,15 +1,15 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, __experimentalUnitControl as UnitControl, __experimentalBoxControl as BoxControl } from '@wordpress/components';
+import { PanelBody, __experimentalBoxControl as BoxControl } from '@wordpress/components';
 
-import { BColor, Background, ColorsControl, Typography } from './Components'
+import {  Background, ColorsControl, Typography } from './Components'
 import { produce } from 'immer';
-import { emUnit, pxUnit } from './Components/utils/options';
+// import { emUnit, pxUnit } from './Components/utils/options';
 
 
 const Settings = ({ attributes, setAttributes }) => {
-	const { tabsPadding, tabColors, tabActiveColors, titleTypo, icon, contentBG } = attributes;
-	const { size: iconSize, color, activeColor } = icon;
+	const { tabsPadding, tabColors, tabActiveColors, titleTypo,  contentBG } = attributes;
+	// const { size: iconSize, color, activeColor } = icon;
 
 	return (
 		<InspectorControls>
@@ -40,10 +40,10 @@ const Settings = ({ attributes, setAttributes }) => {
 					produce={produce}
 				/>
 
-				<UnitControl  label={__("Icon Size", "tcb")} className="mt20" labelPosition='left' value={iconSize} onChange={val => setAttributes({ icon: { ...icon, size: val } })} units={[pxUnit(), emUnit()]} />
+				{/* <UnitControl  label={__("Icon Size", "tcb")} className="mt20" labelPosition='left' value={iconSize} onChange={val => setAttributes({ icon: { ...icon, size: val } })} units={[pxUnit(), emUnit()]} /> */}
 
-				<BColor label={__("Icon Color", "tcb")} value={color} onChange={val => setAttributes({ icon: { ...icon, color: val } })} />
-				<BColor label={__("Icon Active Color", "tcb")} value={activeColor} onChange={val => setAttributes({ icon: { ...icon, activeColor: val } })} />
+				{/* <BColor label={__("Icon Color", "tcb")} value={color} onChange={val => setAttributes({ icon: { ...icon, color: val } })} />
+				<BColor label={__("Icon Active Color", "tcb")} value={activeColor} onChange={val => setAttributes({ icon: { ...icon, activeColor: val } })} /> */}
 			</PanelBody>
 
 			{/* Content Panel */}
