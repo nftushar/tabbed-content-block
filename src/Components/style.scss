@@ -1,0 +1,698 @@
+$primaryColor: #4527a4;
+$secondaryColor: #8344c5;
+
+// Block Align
+.edit-post-visual-editor .editor-styles-wrapper {
+	max-width: inherit !important;
+}
+
+.block-editor-block-list__block[data-align='full'],
+.wp-block[data-align='full'] {
+	max-width: 100% !important;
+}
+
+// .block-editor-block-list__block[data-align='wide']{
+// 	max-width: 1400px !important;
+// 	width: 100% !important;
+// 	margin: 0 auto;
+// }
+// .wp-block[data-align='wide']{
+// 	max-width: 100% !important;
+// 	width: 100% !important;
+
+// 	@media screen and (max-width: 1440px){
+// 		width: 92%!important;
+// 	}
+// 	@media screen and (max-width: 1366px){
+// 		width: 94%!important;
+// 	}
+// 	@media screen and (max-width: 992px){
+// 		width: 96%!important;
+// 	}
+// 	@media screen and (max-width: 768px){
+// 		width: 98%!important;
+// 	}
+// 	@media screen and (max-width: 576px){
+// 		width: 100%!important;
+// 	}
+// }
+
+// .wp-block[data-align='full'] {
+// 	display: contents;
+// }
+
+// .block-editor-block-list__block[data-align='wide']{
+// 	max-width: 100%!important;
+// 	width: 100%!important;
+// }
+
+// .wp-block[data-align='wide']{
+// 	max-width: 100%!important;
+// 	width: 94%!important;
+// }
+
+// @media screen and (max-width: 992px){
+// 	.wp-block[data-align='wide'] {
+// 		width: 96%!important;
+// 	}
+// }
+
+// @media screen and (max-width: 768px){
+// 	.wp-block[data-align='wide'] {
+// 		width: 98%!important;
+// 	}
+// }
+
+// @media screen and (max-width: 576px){
+// 	.wp-block[data-align='wide'] {
+// 		width: 100%!important;
+// 	}
+// }
+
+// .block-editor-block-list__block[data-align='center'] {
+// 	max-width: 100%!important;
+// 	width: 100%!important;
+// }
+
+// Common CSS
+.gap0 {
+	gap: 0 !important;
+}
+
+.gap3 {
+	gap: 3px !important;
+}
+
+.gap5 {
+	gap: 5px !important;
+}
+
+.gap10 {
+	gap: 10px !important;
+}
+
+.gap15 {
+	gap: 15px !important;
+}
+
+.gap20 {
+	gap: 20px !important;
+}
+
+.gap35 {
+	gap: 35px !important;
+}
+
+.mt0 {
+	margin-top: 0px !important;
+}
+
+.mt3 {
+	margin-top: 3px !important;
+}
+
+.mt5 {
+	margin-top: 5px !important;
+}
+
+.mt10 {
+	margin-top: 10px !important;
+}
+
+.mt15 {
+	margin-top: 15px !important;
+}
+
+.mt20 {
+	margin-top: 20px !important;
+}
+
+.mt30 {
+	margin-top: 30px !important;
+}
+
+.mt35 {
+	margin-top: 35px !important;
+}
+
+.mb0 {
+	margin-bottom: 0px !important;
+}
+
+.mb3 {
+	margin-bottom: 3px !important;
+}
+
+.mb5 {
+	margin-bottom: 5px !important;
+}
+
+.mb10 {
+	margin-bottom: 10px !important;
+}
+
+.mb15 {
+	margin-bottom: 15px !important;
+}
+
+.mb20 {
+	margin-bottom: 20px !important;
+}
+
+.mb30 {
+	margin-bottom: 30px !important;
+}
+
+.mb35 {
+	margin-bottom: 35px !important;
+}
+
+// Tab Panel
+.bPlTabPanel {
+	.components-tab-panel__tabs {
+		display: flex;
+		justify-content: space-between;
+
+		button {
+			// font-size: 16px;
+			color: $primaryColor;
+			width: 50%;
+
+			&:focus {
+				color: $primaryColor;
+				box-shadow: none;
+			}
+		}
+
+		.activeTab {
+			border-bottom: 3px solid $primaryColor;
+			font-weight: bold;
+			background-color: rgba($primaryColor, .15);
+		}
+	}
+}
+
+.components-button.has-icon .dashicon {
+	margin: 0;
+}
+
+// Toolbar
+.bPlToolbar {
+	.dashicon {
+		font-size: 23px;
+	}
+}
+
+// Dropdown
+.bPlDropdown {
+	.dashicon {
+		margin-right: 0 !important;
+	}
+}
+
+.bPlDropdownPopover {
+	min-width: 280px;
+	height: auto;
+	box-sizing: border-box;
+	z-index: 9999;
+
+	.components-popover__content {
+		min-width: 280px;
+		margin-right: -35px !important;
+		margin-top: -8px;
+		border: none;
+		box-sizing: border-box;
+		box-shadow: 0 3px 15px 0 #4527a480;
+		border-radius: 5px;
+	}
+
+	.dashicon {
+		margin-right: 0 !important;
+	}
+}
+
+// Panel Body
+.bPlPanelBody,
+.bPlDropdownPopover .components-popover__content {
+
+	// Panel Title
+	// .components-panel__body-title {
+	// 	button {
+	// 		font-size: 16px;
+	// 	}
+	// }
+
+	&.components-panel__body .components-base-control__field {
+		padding: 0;
+	}
+
+	// Unit Control
+	.components-unit-control-wrapper .components-unit-control__select,
+	.components-input-control__suffix .components-unit-control__unit-label {
+		font-size: 11px !important;
+		width: 25px !important;
+		color: #fff !important;
+		background-color: $primaryColor !important;
+	}
+
+	// Checkbox Control
+	.components-base-control__field {
+		display: flex;
+
+		.components-checkbox-control__input[type=checkbox] {
+			border-radius: 4px;
+			border-color: $primaryColor;
+
+			&:checked {
+				background-color: $secondaryColor;
+				border-color: $primaryColor;
+			}
+
+			&:focus {
+				box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px $primaryColor;
+			}
+		}
+
+		label {
+			margin-right: 0;
+		}
+	}
+
+	// Select Control
+	.components-base-control.css-wdf2ti-Wrapper {
+		margin-bottom: 0 !important;
+	}
+
+	// Toggle Control
+	.components-toggle-control {
+		label {
+			margin-bottom: 3px;
+		}
+	}
+
+	.components-form-toggle {
+		.components-form-toggle__track {
+			border: 1px solid $primaryColor;
+		}
+
+		&.is-checked .components-form-toggle__track {
+			background-color: $secondaryColor;
+		}
+
+		.components-form-toggle__input:focus+.components-form-toggle__track {
+			box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px $primaryColor;
+		}
+
+		.components-form-toggle__thumb {
+			background-color: $primaryColor;
+			border-color: $primaryColor;
+		}
+
+		&.is-checked .components-form-toggle__thumb {
+			background-color: #fff;
+		}
+	}
+
+	// Range Control
+	.components-range-control__root {
+		align-items: center !important;
+
+		.css-19yq0mf-BeforeIconWrapper {
+			margin: 0 !important;
+		}
+
+		>span {
+			margin-top: 0;
+		}
+	}
+
+	.components-range-control__wrapper {
+		.components-range-control__track {
+			background-color: $secondaryColor;
+		}
+
+		.css-5p7d2w-ThumbWrapper {
+			width: 14px;
+			height: 14px;
+			margin-top: 8px;
+
+			.css-hdouys-Thumb {
+				background-color: $primaryColor;
+				border: 1px solid $primaryColor;
+			}
+
+			.css-3llzg4-Thumb {
+				border: 2px solid $primaryColor;
+				box-shadow: none;
+			}
+
+			.css-ckoo7b-Thumb {
+				border: 1px solid $primaryColor;
+			}
+		}
+
+		.components-range-control__tooltip,
+		.exqw8y25,
+		.exqw8y24 {
+			background-color: $primaryColor;
+		}
+	}
+
+	// Radio Control
+	.components-radio-control__option {
+		margin-right: 15px;
+		margin-bottom: 0;
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+		.components-radio-control__input[type=radio] {
+			border: 1px solid $primaryColor;
+
+			&:checked {
+				background-color: $primaryColor;
+				border-color: $primaryColor;
+			}
+
+			&:focus {
+				box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px $primaryColor;
+			}
+		}
+
+		label {
+			margin-right: 0;
+			margin-bottom: 1px;
+		}
+	}
+
+	// Gradient Control
+	.components-circular-option-picker {
+		.components-circular-option-picker__swatches {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-right: 0;
+
+			.components-circular-option-picker__option-wrapper {
+				margin: 0 !important;
+			}
+		}
+
+		.components-custom-gradient-picker {
+			.components-custom-gradient-picker__gradient-bar {
+				margin-top: 5px;
+				margin-bottom: 5px;
+			}
+
+			.components-custom-gradient-picker__ui-line {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	// Input Control
+	.components-input-control {
+		height: auto;
+	}
+
+	// Date Picker
+	.components-datetime {
+		.components-datetime__time-field {
+
+			input,
+			select {
+				&:focus {
+					border-color: $primaryColor;
+					box-shadow: none;
+					outline: 1px solid $secondaryColor !important;
+				}
+			}
+
+			select {
+				&:hover {
+					color: $primaryColor;
+				}
+			}
+		}
+
+		.components-button {
+			color: $primaryColor;
+			border: 1px solid $secondaryColor;
+			box-shadow: none;
+			padding: 6px 10.5px;
+
+			&:hover {
+				color: $primaryColor;
+			}
+
+			&.is-primary {
+				color: #fff;
+				background-color: $primaryColor;
+
+				&:hover {
+					background-color: $secondaryColor !important;
+				}
+
+				&:focus {
+					outline: 1px solid $secondaryColor !important;
+				}
+			}
+		}
+
+		.components-datetime__timezone {
+			text-decoration: none;
+		}
+
+		.components-datetime__date {
+			.DayPickerNavigation_button__horizontalDefault:focus {
+				border-color: $primaryColor;
+				box-shadow: 0 0 0 1px $primaryColor;
+			}
+
+			.CalendarDay__default {
+				&:hover {
+					background-color: rgba($primaryColor, 0.15);
+				}
+			}
+
+			.CalendarDay:focus {
+				box-shadow: inset 0 0 0 2px $primaryColor, inset 0 0 0 3px #fff;
+			}
+
+			.CalendarDay__selected {
+				background-color: $primaryColor;
+
+				&:hover {
+					background-color: $primaryColor;
+				}
+			}
+		}
+
+		.components-datetime__buttons {
+			button {
+				text-decoration: none;
+			}
+		}
+	}
+
+	// Others
+	.components-base-control {
+		margin-bottom: 0 !important;
+	}
+
+	// Custom Components
+	// Labels
+	.bPlLabel,
+	.components-unit-control-wrapper label,
+	.components-input-control__label,
+	.components-number-control label {
+		// font-size: 14px;
+		// font-style: italic;
+		// font-weight: 500;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding-bottom: 0 !important;
+		margin-right: auto;
+		margin-bottom: 0;
+	}
+
+	// Reset Value
+	.bPlResetVal {
+		min-width: 20px !important;
+		height: 20px;
+		padding: 0 5px !important;
+
+		.dashicon {
+			width: 17px;
+			height: 17px;
+			font-size: 17px;
+		}
+	}
+
+	// Button Group
+	.bPlBtnGroup {
+
+		.components-button,
+		.is-primary {
+			border: 1px solid $secondaryColor;
+			box-shadow: none;
+			padding: 6px 10.5px;
+
+			&:hover {
+				color: $primaryColor;
+			}
+
+			.dashicon {
+				margin-left: 0;
+				margin-right: 0;
+			}
+
+			&.has-icon {
+				padding: 6px 9px;
+			}
+		}
+
+		.is-primary {
+			color: #fff;
+			background-color: $primaryColor;
+
+			&:hover {
+				background-color: $secondaryColor !important;
+			}
+
+			&:focus {
+				outline: 2px solid $secondaryColor !important;
+			}
+		}
+
+		svg {
+			margin-right: 0 !important;
+		}
+	}
+
+	// Item Title
+	.bplItemTitle {
+		font-size: 12px;
+		font-weight: bold;
+		text-transform: none;
+		margin-bottom: 20px;
+	}
+
+	// Add Items
+	.addItem {
+		text-align: center;
+		background: $primaryColor;
+
+		button {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			color: #fff;
+			// font-size: 15px;
+			// font-weight: 700;
+
+			&:focus {
+				box-shadow: none;
+			}
+
+			&:active {
+				color: #fff;
+			}
+
+			.dashicon {
+				font-size: 18px;
+				width: 18px;
+				height: 18px;
+				margin-right: 5px;
+				margin-bottom: -5px;
+			}
+		}
+	}
+
+	// Item Action
+	.itemAction {
+
+		.removeItem,
+		.duplicateItem {
+			color: #fff;
+			// font-size: 14px;
+			// font-weight: 700;
+			padding: 5px 10px;
+
+			.dashicon,
+			svg {
+				margin-right: 5px;
+				margin-bottom: -2px;
+			}
+		}
+
+		.removeItem {
+			background-color: red;
+
+			.dashicon {
+				font-size: 18px;
+				width: 18px;
+				height: 18px;
+			}
+		}
+
+		.duplicateItem {
+			background-color: $primaryColor;
+		}
+	}
+
+	// Help Button
+	&.help {
+		.helpItem {
+			text-align: center;
+			background: $primaryColor;
+			padding: 12px 0;
+
+			&:not(:first-child) {
+				margin-top: 15px;
+			}
+
+			a {
+				width: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: #fff;
+				// font-size: 15px;
+				// font-weight: 700;
+				text-decoration: none;
+
+				&:focus {
+					box-shadow: none;
+				}
+
+				&:active {
+					color: #fff;
+				}
+
+				.dashicon {
+					font-size: 15px;
+					height: 15px;
+					width: 15px;
+					margin-right: 5px;
+				}
+			}
+		}
+
+		.rateUs {
+			a {
+				flex-direction: column;
+				padding: 0 10px;
+				gap: 8px;
+
+				span:first-child {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+				}
+			}
+		}
+	}
+}

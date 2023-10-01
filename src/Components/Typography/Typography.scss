@@ -1,0 +1,70 @@
+.bPlDropdown {
+	.dashicon {
+		margin-right: 0 !important;
+	}
+}
+
+.bPlDropdownPopover {
+	.bPlTypoFontTitle {
+		p:last-child {
+			width: 73px;
+			margin-right: 0;
+		}
+	}
+
+	.bPlTypoFont {
+		margin-top: 0;
+
+		.bPlTypoFontSelect {
+			position: relative;
+			margin-right: 8px;
+			width: (280px - 105px);
+
+			input {
+				width: 100%;
+			}
+
+			.bPlTypoFontLists {
+				position: absolute;
+				height: 200px;
+				background: #fff;
+				width: 100%;
+				overflow-y: scroll;
+				z-index: 99;
+				margin: 0;
+				border-radius: 8px;
+				box-shadow: 0 4px 15px 0 #4527a480;
+
+				li {
+					margin: 0;
+					padding: 3px 10px;
+
+					&:hover {
+						background-color: #4527a40f;
+						cursor: pointer;
+					}
+				}
+			}
+
+			.dashicon {
+				position: absolute;
+				right: 5px;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+		}
+
+
+		>div.components-base-control {
+			>div.components-base-control__field {
+				margin-bottom: 0 !important;
+				border-radius: 4px;
+
+				select {
+					height: 32px;
+					width: 73px;
+				}
+			}
+		}
+	}
+}
