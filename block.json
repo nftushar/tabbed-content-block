@@ -1,17 +1,16 @@
 {
   "apiVersion": "1",
   "name": "tcb/tabs",
-  "version": "1.0.0",
-  "title": "Tabbed Content",
-  "category": "widgets",
-  "keywords": ["tcb", "tcb-tabbed-content"],
+  "title": "Tabs",
+  "description": "Display responsive, accessible tabs featuring dynamic content.",
   "icon": "welcome-widgets-menus",
-  "description": "Create tabbed sections in WordPress for organized content and improved user engagement.",
-  "supports": {
-    "align": ["wide", "full"],
-    "html": false
-  },
-  "textdomain": "tcb-tabbed-content",
+  "keywords": [
+    "tab",
+    "tabs",
+    "navigation"
+  ],
+  "category": "widgets",
+  "textdomain": "tcb-tab-content",
   "attributes": {
     "align": {
       "type": "string",
@@ -84,6 +83,13 @@
         "type": "gradient"
       }
     }
+  },
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false
   },
   "example": {
     "attributes": {

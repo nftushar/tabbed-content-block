@@ -54,14 +54,14 @@ const Edit = props => {
 
   // Initialize tab on component mount
   useEffect(() => {
-    const listEls = document.querySelectorAll(`#tcbTabbedContent-${clientId} .tabMenu > li`);
+    const listEls = document.querySelectorAll(`#tcbTabContent-${clientId} .tabMenu > li`);
 
     listEls[0] && tabInit(listEls[0], clientId);
   }, []);
 
   // Initialize tab when firstClientId changes
   useEffect(() => {
-    tabInit(document.querySelector(`#tcbTabbedContent-${clientId} .tabMenu > li`), clientId);
+    tabInit(document.querySelector(`#tcbTabContent-${clientId} .tabMenu > li`), clientId);
   }, [firstClientId]);
 
   // Update tabAttribute, titleValue, and iconValue when activeClientId changes
@@ -87,30 +87,30 @@ const Edit = props => {
   }, [titleValue]);
 
   return (
-    <div className='wp-block-tcb-tabs' id={`tcbTabbedContent-${clientId}`}>
+    <div className='wp-block-tcb-tabs' id={`tcbTabContent-${clientId}`}>
       <style>
         {`
           ${getTypoCSS(``, titleTypo)?.googleFontLink}
-          ${getTypoCSS(`#tcbTabbedContent-${clientId} li .tabLabel`, titleTypo)?.styles}
+          ${getTypoCSS(`#tcbTabContent-${clientId} li .tabLabel`, titleTypo)?.styles}
 
-          #tcbTabbedContent-${clientId} .tabMenu {
+          #tcbTabContent-${clientId} .tabMenu {
             padding: ${getBoxValue(tabsPadding)};
           }
-          #tcbTabbedContent-${clientId} .tabMenu li {
+          #tcbTabContent-${clientId} .tabMenu li {
             ${getColorsCSS(tabColors)}
           }
-          #tcbTabbedContent-${clientId} .tabMenu li.active {
+          #tcbTabContent-${clientId} .tabMenu li.active {
             ${getColorsCSS(tabActiveColors)}
           }
-          .tcbTabbedContent-${clientId} .tabMenu li .menuIcon i {
+          .tcbTabContent-${clientId} .tabMenu li .menuIcon i {
             font-size: ${icon.size};
             color: ${icon.color};
           }
-          .tcbTabbedContent-${clientId} .tabMenu li.active .menuIcon i {
+          .tcbTabContent-${clientId} .tabMenu li.active .menuIcon i {
             color: ${icon.activeColor};
           }
 
-          .tcbTabbedContent-${clientId} .tabContent {
+          .tcbTabContent-${clientId} .tabContent {
             ${getBackgroundCSS(contentBG)}
           }
         `}
@@ -145,7 +145,7 @@ const Edit = props => {
 
       <Settings attributes={attributes} setAttributes={setAttributes}></Settings>
 
-      <div id={`tcbTabbedContent-${clientId}`} className={`tcbTabbedContent tcbTabbedContent-${clientId}`}>
+      <div id={`tcbTabContent-${clientId}`} className={`tcbTabContent tcbTabContent-${clientId}`}>
         <ul className="tabMenu">
           {tabs.map((tab, index) => (
             <Tab
@@ -214,7 +214,7 @@ const Tab = ({ getBlockAttributes, updateBlockAttributes, removeBlock, clientId,
   return (
     <li key={index} onClick={onListClick} className={index === 0 ? "active" : ""} id={`menuItem-${childId}`}>
       <style>
-        {`#tcbTabbedContent-${clientId} .tabMenu #menuItem-${childId} .menuIcon i{
+        {`#tcbTabContent-${clientId} .tabMenu #menuItem-${childId} .menuIcon i{
           ${icon?.color || icon?.gradient ? getIconCSS(icon, false) : ""}
         }`}
       </style>

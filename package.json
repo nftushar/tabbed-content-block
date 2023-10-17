@@ -1,14 +1,14 @@
 {
-	"name": "tabbed-content-block",
+	"name": "tab-content-block",
 	"version": "1.0.0",
-	"description": "Tabbed Content Block",
+	"description": "Display responsive, accessible tabs featuring dynamic content.",
 	"main": "index.js",
 	"scripts": {
 		"lint": "eslint src",
 		"start": "webpack --mode=development --watch",
 		"sync": "browser-sync start -p 'http://localhost/' --files '**/*.php' 'dist/*.js' 'dist/*.css'",
 		"preview": "npm-run-all --parallel sync start",
-		"i18n-pot": "wp i18n make-pot . languages/tabbed-content.pot --exclude=\"src\" && cp ./languages/tabbed-content.pot ./languages/tabbed-content-en_US.po",
+		"i18n-pot": "wp i18n make-pot . languages/tab-content.pot --exclude=\"src\" && cp ./languages/tab-content.pot ./languages/tab-content-en_US.po",
 		"i18n-json": "wp i18n make-json languages/ --no-purge",
 		"i18n-mo": "wp i18n make-mo languages/",
 		"i18n": "npm run i18n-pot && npm run i18n-json && npm run i18n-mo",

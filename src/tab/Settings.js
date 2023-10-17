@@ -10,7 +10,7 @@ const Settings = ({ attributes, setAttributes }) => {
 
   return (
     <InspectorControls>
-      <PanelBody className='bPlPanelBody' title={__('Tabbed Content', 'stepped-content')}>
+      <PanelBody className='bPlPanelBody' title={__('Tab Content', 'stepped-content')}>
         {/* Title */}
         <Label className='mb5'>{__('Title:', 'tcb')}</Label>
         <TextControl value={title} onChange={val => setAttributes({ title: val })} />

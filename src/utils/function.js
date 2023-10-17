@@ -8,8 +8,8 @@ const getIndex = el => Array.from(el?.parentElement?.children || [])?.indexOf(el
 let timerOpacity;
 
 export const tabInit = (el, clientId) => {
-    const listEls = document.querySelectorAll(`#tcbTabbedContent-${clientId} .tabMenu > li`);
-    const bodyEls = document.querySelectorAll(`#tcbTabbedContent-${clientId} .wp-block-tcb-tab`);
+    const listEls = document.querySelectorAll(`#tcbTabContent-${clientId} .tabMenu > li`);
+    const bodyEls = document.querySelectorAll(`#tcbTabContent-${clientId} .wp-block-tcb-tab`);
 
     // Clear Timer
     window.clearTimeout(timerOpacity);

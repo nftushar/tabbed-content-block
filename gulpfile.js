@@ -28,6 +28,6 @@ exports.bundle = () => (
 		'!todo.txt',
 		'!webpack.config.cjs',
 	])
-		.pipe(zip('tabbed-content-block.zip'))
+		.pipe(zip('tab-content-block.zip'))
 		.pipe(gulp.dest('bundled'))
 );

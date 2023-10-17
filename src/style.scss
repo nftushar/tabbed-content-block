@@ -40,7 +40,7 @@ html :where(.editor-styles-wrapper) ul {
 		font-size: 30px;
 	}
 
-	.tcbTabbedContent {
+	.tcbTabContent {
 		display: flex;
 		flex-direction: column;
 	}
@@ -119,7 +119,7 @@ html :where(.editor-styles-wrapper) ul {
 		}
 	}
 
-	.tcbTabbedContent {
+	.tcbTabContent {
 		.wp-block-tcb-tab {
 			padding: 25px;
 			display: none;
@@ -160,7 +160,7 @@ html :where(.editor-styles-wrapper) ul {
 	}
 
 	@media (max-width: 576px) {
-		.tcbTabbedContent .tabMenu li {
+		.tcbTabContent .tabMenu li {
 			flex-grow: 1;
 		}
 		.tabMenu {
@@ -176,7 +176,7 @@ html :where(.editor-styles-wrapper) ul {
 	}
 
 	@media (min-width: 768px) {
-		.tcbTabbedContent .tabMenu li {
+		.tcbTabContent .tabMenu li {
 			padding: 20px 15px;
 		}
 	}
@@ -195,7 +195,7 @@ html :where(.editor-styles-wrapper) ul {
 		-ms-flex-wrap: wrap;
 		flex-wrap: wrap;
 	}
-	.tcbTabbedContent .tabMenu li {
+	.tcbTabContent .tabMenu li {
 		flex-grow: 1;
 	}
 }

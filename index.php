@@ -1,15 +1,17 @@
 <?php
-/**
- * Plugin Name: Tabbed Content Block
- * Description: Create tabbed sections in WordPress for organized content and improved user engagement.
- * Version: 1.0.0
+/** 
+ * Plugin Name: Tabbed Contents Block
+ * Description: Display responsive, accessible tabs featuring dynamic content.
+ * Version: 1.0.3 
+ * Plugin Name: Tab Content Block
+ * Description: Create tab sections in WordPress for organized content and improved user engagement.
+ * Version: 1.0.2 
  * Author: bPlugins LLC
  * Author URI: http://bplugins.com
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
- * Text Domain: tabbed-content
+ * Text Domain: tab-content
  */
-
 // ABS PATH
 if (!defined('ABSPATH')) {
 	exit;
