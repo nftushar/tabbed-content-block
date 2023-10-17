@@ -1,5 +1,5 @@
 <?php
-class TabContentTab extends TabContent {
+class TabContentTab extends TabbedContent {
 	public function __construct() {
 		add_action( 'init', [ $this, 'onInit' ] );
 	}

@@ -4,8 +4,7 @@
  * Description: Display responsive, accessible tabs featuring dynamic content.
  * Version: 1.0.3 
  * Plugin Name: Tab Content Block
- * Description: Create tab sections in WordPress for organized content and improved user engagement.
- * Version: 1.0.2 
+ * Description: Create tab sections in WordPress for organized content and improved user engagement. 
  * Author: bPlugins LLC
  * Author URI: http://bplugins.com
  * License: GPLv3

@@ -11,6 +11,8 @@
 
 .editor-styles-wrapper .block-editor-block-list__layout.is-root-container p {
 	margin-bottom: 0.6em !important;
+	display: contents;
+	color: #000;
 }
 
 html :where(.editor-styles-wrapper) ol,
@@ -21,14 +23,9 @@ html :where(.editor-styles-wrapper) ul {
 	padding: 0;
 }
 
-.components-button.has-icon.has-text {
-	// -webkit-box-align: center;
-	// -ms-flex-align: center;
-	// align-items: center;
+.components-button.has-icon.has-text { 
 	background: #4527a4;
-	color: #fff;
-	// display: -webkit-inline-box;
-	// display: -ms-inline-flexbox;
+	color: #fff; 
 	display: inline-flex;
 	font-size: 15px;
 	font-weight: 700;
